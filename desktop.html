@@ -170,6 +170,21 @@
             <!-- Ocean Base -->
             <rect x="0" y="0" width="1060" height="520" fill="url(#seaGradient)" />
 
+            <!-- Ocean Wave Ripples in Bays -->
+            <g stroke="#38bdf8" stroke-opacity="0.22" stroke-width="1.2" fill="none">
+              <!-- Qingdao Bay ripples -->
+              <path d="M 120,410 Q 150,420 180,410" />
+              <path d="M 140,430 Q 170,440 200,430" />
+              <!-- Huiquan Bay ripples -->
+              <path d="M 390,400 Q 420,415 450,400" />
+              <path d="M 405,420 Q 435,435 465,420" />
+              <!-- Taiping Bay ripples -->
+              <path d="M 520,430 Q 550,442 580,430" />
+              <!-- Fushan Bay ripples -->
+              <path d="M 680,390 Q 730,405 780,390" />
+              <path d="M 700,415 Q 750,430 800,415" />
+            </g>
+
             <!-- Grid Lines for Spatial Distance Perception -->
             <g opacity="0.07" stroke="currentColor" stroke-dasharray="3 3">
               <line x1="180" y1="0" x2="180" y2="520" />
@@ -226,26 +241,54 @@
 
             <!-- Coastal Beaches (Golden accents for bays) -->
             <!-- First Beach -->
-            <path d="M 400,362 Q 425,375 448,362" stroke="#f59e0b" stroke-width="4" stroke-linecap="round" opacity="0.75" />
-            <text x="425" y="386" font-size="9" fill="#d97706" text-anchor="middle">第一海水浴场</text>
+            <path d="M 400,362 Q 425,375 448,362" stroke="#f59e0b" stroke-width="4.5" stroke-linecap="round" opacity="0.8" />
+            <text x="425" y="388" font-size="9" fill="#d97706" text-anchor="middle" font-weight="600">第一海水浴场</text>
 
             <!-- Second Beach -->
-            <path d="M 495,390 Q 512,410 525,395" stroke="#f59e0b" stroke-width="4" stroke-linecap="round" opacity="0.75" />
-            <text x="510" y="425" font-size="9" fill="#d97706" text-anchor="middle">第二海水浴场</text>
+            <path d="M 495,390 Q 512,410 525,395" stroke="#f59e0b" stroke-width="4.5" stroke-linecap="round" opacity="0.8" />
+            <text x="510" y="425" font-size="9" fill="#d97706" text-anchor="middle" font-weight="600">第二海水浴场</text>
 
             <!-- Third Beach -->
-            <path d="M 610,358 Q 630,370 655,358" stroke="#f59e0b" stroke-width="4" stroke-linecap="round" opacity="0.75" />
-            <text x="635" y="380" font-size="9" fill="#d97706" text-anchor="middle">第三海水浴场</text>
+            <path d="M 610,358 Q 630,370 655,358" stroke="#f59e0b" stroke-width="4.5" stroke-linecap="round" opacity="0.8" />
+            <text x="635" y="380" font-size="9" fill="#d97706" text-anchor="middle" font-weight="600">第三海水浴场</text>
 
             <!-- Zhanqiao Pier Extension (Bridge into sea) -->
-            <line x1="168" y1="350" x2="168" y2="435" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
-            <circle cx="168" cy="435" r="5.5" fill="#e11d48" />
+            <line x1="168" y1="350" x2="168" y2="435" stroke="#94a3b8" stroke-width="4.5" stroke-linecap="round"/>
+            <circle cx="168" cy="435" r="6" fill="#e11d48" stroke="#ffffff" stroke-width="1.5" />
+            <text x="168" y="452" font-size="8.5" fill="#e11d48" font-weight="700" text-anchor="middle">回澜阁</text>
 
+            <!-- Little Qingdao & White Lighthouse -->
+            <path d="M 225,365 Q 248,398 270,418" stroke="#94a3b8" stroke-width="2.5" stroke-dasharray="3 1.5" />
+            <path d="M 270,410 C 258,418 262,434 278,430 C 290,426 286,412 270,410 Z" fill="#64748b" opacity="0.8" />
+            <circle cx="275" cy="420" r="4.5" fill="#ffffff" stroke="#0284c7" stroke-width="2" />
+            <text x="275" y="442" font-size="8.5" fill="#0284c7" font-weight="700" text-anchor="middle">小青岛(白灯塔)</text>
+
+            <!-- Wheat Island (Offshore green lawn island) -->
+            <line x1="845" y1="355" x2="865" y2="385" stroke="#d97706" stroke-width="2.5" stroke-dasharray="3 1.5" />
+            <path d="M 860,400 C 850,385 870,360 895,370 C 915,380 910,420 890,425 C 870,430 855,415 860,400 Z" fill="#10b981" fill-opacity="0.3" stroke="#10b981" stroke-width="1.8" />
+            <text x="895" y="440" font-size="9" fill="#059669" font-weight="700" text-anchor="middle">小麦岛(海上草坪)</text>
+
+            <!-- Metro Transit Network (Line 3 & Line 2) -->
             <!-- Metro Line 3 (Parallel to coast linking West and East) -->
-            <g opacity="0.6">
-              <path d="M 140,290 Q 230,280 320,285 T 460,295 T 600,290 T 710,285" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="4 2" />
-              <text x="680" y="278" font-size="8.5" fill="#ef4444" font-weight="600">地铁3号线 (沿海东西大动脉)</text>
+            <g opacity="0.65">
+              <path d="M 140,290 Q 230,280 320,285 T 460,295 T 600,290 T 710,285" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="5 2.5" />
+              <text x="590" y="280" font-size="8.5" fill="#ef4444" font-weight="700">地铁3号线 (东西大动脉)</text>
+              <circle cx="150" cy="290" r="2.5" fill="#ef4444" />
+              <circle cx="230" cy="282" r="2.5" fill="#ef4444" />
+              <circle cx="460" cy="295" r="2.5" fill="#ef4444" />
+              <circle cx="570" cy="290" r="2.5" fill="#ef4444" />
+              <circle cx="705" cy="285" r="3.5" fill="#ef4444" stroke="#fff" stroke-width="1" />
             </g>
+
+            <!-- Metro Line 2 (Amber North-East line) -->
+            <g opacity="0.65">
+              <path d="M 370,140 Q 540,165 705,285 Q 790,310 880,340" fill="none" stroke="#f59e0b" stroke-width="2.2" stroke-dasharray="4 2" />
+              <text x="770" y="295" font-size="8.5" fill="#d97706" font-weight="700">地铁2号线</text>
+              <circle cx="880" cy="340" r="2.5" fill="#f59e0b" />
+            </g>
+
+            <!-- Dynamic Daily Route Path Connector -->
+            <g id="dayRouteGroup"></g>
 
             <!-- Morning Run Path Layer (Highlighted when Run Mode active) -->
             <g id="morningRunGroup" class="transition-all duration-300" opacity="0.85">
@@ -276,7 +319,7 @@
             </g>
 
             <!-- Distance Ruler Axis (Perception Helper) -->
-            <g transform="translate(0, 475)" font-size="9" fill="currentColor">
+            <g transform="translate(0, 480)" font-size="8.5" fill="currentColor">
               <line x1="168" y1="0" x2="880" y2="0" stroke="currentColor" stroke-opacity="0.3" stroke-width="1.5" />
               <!-- Zhanqiao to Badaguan -->
               <line x1="168" y1="-5" x2="168" y2="5" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5" />
@@ -434,6 +477,11 @@
             <!-- Dynamically populated steps -->
           </div>
 
+          <!-- Dynamic Dining & Reading Cafe Section -->
+          <div id="dynamicDayDining" class="space-y-1.5 pt-2 border-t border-[var(--border)]">
+            <!-- Dynamically populated dining and cafes -->
+          </div>
+
           <div class="bg-[var(--card)]/80 rounded-xl p-2.5 border border-sky-500/20 flex items-center justify-between text-[11px]">
             <span id="dynamicDayNote">💡 贴士：老街坡度微起伏，穿轻便步行鞋最舒服；大鲍岛夜灯约18:30亮起，拍照极美。</span>
           </div>
@@ -497,10 +545,11 @@
         name: "栈桥与回澜阁",
         x: 168,
         y: 430,
-        type: "coastal",
-        badge: "青岛百年象征 / 海滨长桥",
+        seq: { day1: "①", day5: "①" },
+        days: ["day1", "day5"],
         category: "sea",
         day: "day5",
+        badge: "青岛百年象征 / 海滨长桥",
         hours: "全天开放 (回澜阁展厅 08:30-17:00)",
         duration: "45 分钟",
         bestTime: "清晨 07:00-08:30 或傍晚 (避开大巴团)",
@@ -510,14 +559,33 @@
         tips: "青岛的地标代表作。国庆期间白天游客极多，一定要在清晨8点前来！晨光洒在胶州湾海面上，偶有早秋海鸥飞过，回望老城海岸线极其壮阔。"
       },
       {
+        id: "zhongshan",
+        name: "中山路百年老街",
+        x: 185,
+        y: 330,
+        seq: { day1: "②" },
+        days: ["day1"],
+        category: "arch",
+        day: "day1",
+        badge: "百年老街 · 复古建筑",
+        hours: "全天开放 (沿街商铺 10:00-22:00)",
+        duration: "1 小时",
+        bestTime: "傍晚 16:30 - 17:30 (斜阳漫步)",
+        ticket: "免费漫步",
+        location: "市南区中山路主轴",
+        distance: "南接栈桥，北通大鲍岛 (步行5-10分)",
+        tips: "青岛开埠以来的第一商业街，连接栈桥与大鲍岛。沿途打卡安娜别墅巨型玫瑰、1907光影俱乐部、百年鲁菜老字号春和楼。"
+      },
+      {
         id: "church",
         name: "圣弥厄尔天主教堂",
         x: 200,
         y: 260,
-        type: "arch",
-        badge: "哥特式建筑 / 德式双塔",
+        seq: { day1: "③" },
+        days: ["day1"],
         category: "arch",
         day: "day1",
+        badge: "哥特式建筑 / 德式双塔",
         hours: "09:00 - 17:00 (周日弥撒后 11:30开放)",
         duration: "40 分钟",
         bestTime: "上午 09:00 或下午 16:00 (斜阳照在塔尖)",
@@ -528,13 +596,14 @@
       },
       {
         id: "dabaodao",
-        name: "大鲍岛文化休闲街区 (里院)",
+        name: "大鲍岛广兴里 (里院)",
         x: 235,
         y: 195,
-        type: "culture",
-        badge: "本土中西合璧 / 里院市井",
+        seq: { day1: "④" },
+        days: ["day1"],
         category: "culture",
         day: "day1",
+        badge: "本土中西合璧 / 里院市井",
         hours: "街区全天开放 (店铺营业约 10:00-22:00)",
         duration: "1.5 ~ 2 小时",
         bestTime: "傍晚 17:30 - 20:30 (里院夜灯初上)",
@@ -548,10 +617,11 @@
         name: "德国总督楼旧址 (迎宾馆)",
         x: 285,
         y: 250,
-        type: "arch",
-        badge: "新罗马城堡 / 远东最奢华官邸",
+        seq: { day2: "①" },
+        days: ["day2"],
         category: "arch",
         day: "day2",
+        badge: "新罗马城堡 / 远东最奢华官邸",
         hours: "09:00 - 17:00 (16:30停止售票，周一闭馆)",
         duration: "1.5 小时 (深度细看)",
         bestTime: "上午 09:30 - 11:00 (光线柔和)",
@@ -561,14 +631,33 @@
         tips: "粗粝的黄色花岗岩城堡造型，内部完整保留百年前德式实木护墙板、水晶吊灯及德国施坦威定制三角钢琴。馆内严禁拍照，非常值得用心凝视工艺细节。"
       },
       {
+        id: "daxuelu",
+        name: "大学路 / 老舍故居群",
+        x: 325,
+        y: 270,
+        seq: { day2: "②" },
+        days: ["day2"],
+        category: "culture",
+        day: "day2",
+        badge: "文艺红墙 / 绿荫老舍故居",
+        hours: "街区全天 (名人故居展馆大多 09:00-17:00 周一闭)",
+        duration: "1.5 ~ 2 小时",
+        bestTime: "午后 14:00 - 16:30 (林荫光斑极美)",
+        ticket: "街区免费；老舍故居(骆驼祥子馆)免费",
+        location: "市南区大学路与鱼山路交叉口周边",
+        distance: "距信号山步行约 10分钟",
+        tips: "除了网红红墙转角，更推荐顺着黄县路拐进小巷子，看老舍故居和青岛第一代知识分子的旧居，两旁全是安静的庭院咖啡馆(如自力咖啡)，点一杯拿铁坐半下午非常惬意。"
+      },
+      {
         id: "xinhaoshan",
-        name: "信号山公园 (360°红瓦绿树观景)",
+        name: "信号山公园 (360°俯瞰)",
         x: 265,
-        y: 275,
-        type: "view",
-        badge: "老城第一制高点 / 绝美夕阳",
+        y: 285,
+        seq: { day2: "③" },
+        days: ["day2"],
         category: "view",
         day: "day2",
+        badge: "老城第一制高点 / 绝美夕阳",
         hours: "公园 06:00-20:30；旋转观景楼 08:30-17:00",
         duration: "1 ~ 1.5 小时",
         bestTime: "16:30 - 18:00 (看落日映红红瓦与海面)",
@@ -578,99 +667,69 @@
         tips: "不用爬很累，15分钟即可登顶。山顶三座红色蘑菇楼，站在踏浪亭可以360度俯瞰整个青岛老城：圣弥厄尔大教堂、总督府、小青岛尽收眼底，真正的'红瓦绿树碧海蓝天'！"
       },
       {
-        id: "daxuelu",
-        name: "大学路 / 鱼山路 / 名人故居群",
-        x: 325,
-        y: 270,
-        type: "culture",
-        badge: "文艺红墙 / 老舍沈从文故居",
-        category: "culture",
-        day: "day2",
-        hours: "街区全天 (名人故居展馆大多 09:00-17:00 周一闭)",
-        duration: "1.5 ~ 2 小时",
-        bestTime: "午后 14:00 - 16:30 (林荫光斑极美)",
-        ticket: "街区免费；老舍故居(骆驼祥子馆)免费",
-        location: "市南区大学路与鱼山路交叉口周边",
-        distance: "距信号山步行约 10分钟",
-        tips: "除了网红红墙转角，更推荐顺着黄县路拐进小巷子，看老舍故居和青岛第一代知识分子的旧居，两旁全是安静的庭院咖啡馆，点一杯拿铁坐半下午非常惬意。"
-      },
-      {
-        id: "qinyulu",
-        name: "琴屿路 & 小青岛",
-        x: 270,
-        y: 420,
-        type: "coastal",
-        badge: "最美S弯海景路 / 白色灯塔",
-        category: "sea",
-        day: "day5",
-        hours: "琴屿路全天；小青岛公园 08:30 - 17:00",
-        duration: "1 小时",
-        bestTime: "清晨 或 傍晚日落时分",
-        ticket: "免费开放",
-        location: "市南区琴屿路1号",
-        distance: "距鲁迅公园 400米",
-        tips: "蜿蜒入海的绝美海滨马路，一边是红褐色礁石海浪，一边是文艺小咖啡馆。远眺小青岛上的百年白色德式灯塔，海风吹来无比治愈。"
-      },
-      {
         id: "badaguan",
-        name: "八大关风景区 (花石楼/公主楼)",
+        name: "八大关风景区 (花石楼)",
         x: 485,
         y: 335,
-        type: "arch",
-        badge: "万国建筑博览 / 水杉林荫道",
+        seq: { day3: "①", run: "起" },
+        days: ["day3", "run"],
         category: "arch",
         day: "day3",
+        badge: "万国建筑博览 / 水杉林荫道",
         hours: "街区全天；展馆(花石楼等) 08:30-17:00",
         duration: "2.5 ~ 3 小时",
         bestTime: "清晨晨跑 或 下午 14:30-17:00",
         ticket: "街区免费；花石楼¥8.5，公主楼¥15",
         location: "市南区汇泉角东北侧正阳关路",
         distance: "距青岛站 4.5km (地铁3号线8分钟直达)",
-        tips: "青岛慢游的灵魂所在！十条马路分别以我国著名关隘命名（山海关路、居庸关路等），各具特色树种。花石楼融合古城堡与滑道石，顶楼天台俯瞰大海视野开阔。"
+        tips: "青岛慢游的灵魂所在！十条马路分别以我国著名关隘命名。清晨独享水杉大道晨跑；下午花石楼登塔俯瞰第二海水浴场月牙湾。"
       },
       {
         id: "taipingjiao",
         name: "太平角公园与海滨木栈道",
         x: 570,
         y: 390,
-        type: "coastal",
-        badge: "小众静谧海岬 / 洋房海景咖啡",
+        seq: { day3: "②", run: "终" },
+        days: ["day3", "run"],
         category: "sea",
         day: "day3",
+        badge: "小众静谧海岬 / 洋房海景咖啡",
         hours: "全天开放",
         duration: "1.5 小时",
         bestTime: "15:00 - 18:00 (海风与下午茶)",
         ticket: "免费开放",
         location: "市南区太平角一路至三路",
         distance: "与八大关东侧自然相连 (步行5分钟)",
-        tips: "相比八大关游客更少、更加静谧。这里保留着许多独栋洋房改造的宝藏海边咖啡馆。栈道贴着礁石延伸，坐着看海浪碎在礁石上，是避开人潮的私藏地。"
+        tips: "相比八大关游客更少、更加静谧。独栋老洋房改造的宝藏海边咖啡馆（如遇遇见海），270°全景大窗直面黄海，听浪看书天花板。"
       },
       {
         id: "beermuseum",
-        name: "青岛啤酒博物馆 (登州路56号)",
+        name: "青岛啤酒博物馆 (1903)",
         x: 370,
         y: 130,
-        type: "culture",
-        badge: "百年工业遗产 / 1903原浆鲜啤",
+        seq: { day4: "①" },
+        days: ["day4"],
         category: "culture",
         day: "day4",
+        badge: "百年工业遗产 / 1903原浆鲜啤",
         hours: "08:30 - 17:30 (旺季延至18:00，停检前半小时)",
         duration: "2 小时",
         bestTime: "上午 10:00 - 12:00 (避开下午旅游团)",
         ticket: "经典普通票约 ¥60 (含2杯鲜啤与啤酒豆)",
         location: "市北区登州路56号",
         distance: "距老城区约 4km (打车12分钟)",
-        tips: "绝不仅仅是一个卖酒的地方！里面完整保留了1903年德式糖化车间与铜发酵罐，工业人文底蕴极深。最赞的是参观中途免费品尝刚出罐的鲜原浆生啤，麦香浓郁。"
+        tips: "国家一级博物馆，完整保留了1903年德式糖化车间与铜发酵罐，工业人文底蕴极深。最赞的是参观中途免费品尝刚出罐的鲜原浆生啤，麦香浓郁。"
       },
       {
         id: "wheat",
-        name: "小麦岛公园",
+        name: "小麦岛公园 (海上草坪)",
         x: 875,
         y: 405,
-        type: "view",
-        badge: "海上孤独绿岛 / 绝美草坪落日",
+        seq: { day4: "②" },
+        days: ["day4"],
         category: "view",
         day: "day4",
+        badge: "海上孤独绿岛 / 绝美草坪落日",
         hours: "06:00 - 21:00",
         duration: "2 小时",
         bestTime: "16:30 - 18:30 (不可错过的日落时刻)",
@@ -684,10 +743,11 @@
         name: "五四广场 & 奥帆中心",
         x: 705,
         y: 335,
-        type: "coastal",
-        badge: "五月的风 / 浮山湾现代灯光秀",
+        seq: { day4: "③" },
+        days: ["day4"],
         category: "sea",
         day: "day4",
+        badge: "五月的风 / 浮山湾现代灯光秀",
         hours: "全天开放 (灯光秀通常逢周末/节假日晚20:00)",
         duration: "1 ~ 1.5 小时",
         bestTime: "晚上 19:30 - 20:30 (看城市天际线灯火)",
@@ -697,14 +757,31 @@
         tips: "青岛现代都会形象的窗口。红色巨型雕塑‘五月的风’巍峨耸立，旁边即是2008年奥运帆船赛场。夜间浮山湾高楼群的滨海灯光秀气势恢宏。"
       },
       {
+        id: "qinyulu",
+        name: "琴屿路 & 小青岛",
+        x: 270,
+        y: 420,
+        seq: { day5: "②" },
+        days: ["day5"],
+        category: "sea",
+        day: "day5",
+        badge: "最美S弯海景路 / 白色灯塔",
+        hours: "琴屿路全天；小青岛公园 08:30 - 17:00",
+        duration: "1 小时",
+        bestTime: "清晨 或 傍晚日落时分",
+        ticket: "免费开放",
+        location: "市南区琴屿路1号",
+        distance: "距鲁迅公园 400米",
+        tips: "蜿蜒入海的绝美海滨马路，一边是红褐色礁石海浪，一边是文艺小咖啡馆。远眺小青岛上的百年白色德式灯塔，海风吹来无比治愈。"
+      },
+      {
         id: "westin",
         name: "青岛威斯汀酒店 (五四广场)",
         x: 705,
-        y: 290,
-        type: "hotel",
-        badge: "五星商务度假 / 双地铁枢纽",
-        category: "arch",
+        y: 285,
+        category: "hotel",
         day: "all",
+        badge: "五星商务度假 / 双地铁枢纽",
         hours: "24小时全天接待服务",
         duration: "大本营住宿",
         bestTime: "全天舒适入住",
@@ -727,17 +804,81 @@
     let activeFilter = 'all';
     let selectedLandmarkId = 'badaguan';
 
-    // Render SVG Landmark Pins
+    // Render SVG Landmark Pins & Dynamic Trajectory Paths
     function renderPins() {
       const g = document.getElementById('pinsGroup');
+      if (!g) return;
       g.innerHTML = '';
+
+      const routeGroup = document.getElementById('dayRouteGroup');
+      if (routeGroup) routeGroup.innerHTML = '';
+
+      const runGroup = document.getElementById('morningRunGroup');
+      if (runGroup) {
+        if (activeFilter === 'run' || activeFilter === 'day3') {
+          runGroup.setAttribute('opacity', '1');
+          runGroup.style.display = 'block';
+        } else {
+          runGroup.setAttribute('opacity', '0.2');
+          runGroup.style.display = 'block';
+        }
+      }
+
+      // Draw day route path connector if specific day
+      if (routeGroup) {
+        let routePathD = '';
+        let strokeColor = '#38bdf8';
+
+        if (activeFilter === 'day1') {
+          routePathD = 'M 168,430 L 185,330 L 200,260 L 235,195';
+          strokeColor = '#0284c7';
+        } else if (activeFilter === 'day2') {
+          routePathD = 'M 285,250 L 325,270 L 265,285';
+          strokeColor = '#8b5cf6';
+        } else if (activeFilter === 'day3') {
+          routePathD = 'M 485,335 L 510,395 L 570,390';
+          strokeColor = '#10b981';
+        } else if (activeFilter === 'day4') {
+          routePathD = 'M 370,130 Q 540,200 705,285 L 875,405 L 705,335';
+          strokeColor = '#f59e0b';
+        } else if (activeFilter === 'day5') {
+          routePathD = 'M 168,430 Q 210,445 270,420';
+          strokeColor = '#0284c7';
+        }
+
+        if (routePathD) {
+          const pathEl = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+          pathEl.setAttribute('d', routePathD);
+          pathEl.setAttribute('fill', 'none');
+          pathEl.setAttribute('stroke', strokeColor);
+          pathEl.setAttribute('stroke-width', '3.5');
+          pathEl.setAttribute('stroke-linecap', 'round');
+          pathEl.setAttribute('stroke-linejoin', 'round');
+          pathEl.setAttribute('stroke-dasharray', '6 3');
+          pathEl.setAttribute('class', 'filter drop-shadow-md');
+          routeGroup.appendChild(pathEl);
+        }
+      }
 
       landmarks.forEach(spot => {
         let isVisible = true;
-        if (activeFilter === 'run') {
+        let isCurrentDay = false;
+        let seqBadge = '';
+
+        if (activeFilter === 'all') {
+          isVisible = true;
+          isCurrentDay = true;
+        } else if (activeFilter === 'run') {
           isVisible = (spot.id === 'badaguan' || spot.id === 'taipingjiao');
+          isCurrentDay = isVisible;
+          if (spot.id === 'badaguan') seqBadge = '起';
+          if (spot.id === 'taipingjiao') seqBadge = '终';
         } else if (activeFilter.startsWith('day')) {
-          isVisible = (spot.day === activeFilter);
+          isCurrentDay = (spot.days ? spot.days.includes(activeFilter) : spot.day === activeFilter);
+          isVisible = isCurrentDay;
+          if (spot.seq && spot.seq[activeFilter]) {
+            seqBadge = spot.seq[activeFilter];
+          }
         }
 
         const isSelected = (spot.id === selectedLandmarkId);
@@ -747,17 +888,18 @@
         if (spot.category === 'sea') pinColor = '#0284c7';
         if (spot.category === 'culture') pinColor = '#f59e0b';
         if (spot.category === 'view') pinColor = '#10b981';
+        if (spot.category === 'hotel') pinColor = '#8b5cf6';
 
         const pinGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-        pinGroup.setAttribute('class', `spot-pin transition-opacity duration-300 ${isVisible ? 'opacity-100' : 'opacity-20 pointer-events-none'}`);
+        pinGroup.setAttribute('class', `spot-pin transition-opacity duration-300 ${isVisible ? 'opacity-100 cursor-pointer' : 'opacity-20 pointer-events-none'}`);
         pinGroup.setAttribute('onclick', `selectLandmark('${spot.id}')`);
 
-        // Pulsing ring if selected
-        if (isSelected) {
+        // Pulsing ring if selected or active day
+        if (isSelected || (isCurrentDay && activeFilter !== 'all')) {
           const ring = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
           ring.setAttribute('cx', spot.x);
           ring.setAttribute('cy', spot.y);
-          ring.setAttribute('r', '14');
+          ring.setAttribute('r', isSelected ? '14' : '11');
           ring.setAttribute('fill', 'none');
           ring.setAttribute('stroke', pinColor);
           ring.setAttribute('stroke-width', '2');
@@ -769,21 +911,34 @@
         const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
         circle.setAttribute('cx', spot.x);
         circle.setAttribute('cy', spot.y);
-        circle.setAttribute('r', isSelected ? '8' : '6');
+        circle.setAttribute('r', isSelected ? '8' : (isCurrentDay ? '6.5' : '5'));
         circle.setAttribute('fill', pinColor);
         circle.setAttribute('stroke', '#ffffff');
         circle.setAttribute('stroke-width', '2');
         circle.setAttribute('filter', 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))');
         pinGroup.appendChild(circle);
 
+        // Sequence badge if active day has sequence
+        if (seqBadge && isCurrentDay) {
+          const badgeText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          badgeText.setAttribute('x', spot.x);
+          badgeText.setAttribute('y', spot.y + 3.5);
+          badgeText.setAttribute('text-anchor', 'middle');
+          badgeText.setAttribute('font-size', '8');
+          badgeText.setAttribute('font-weight', '900');
+          badgeText.setAttribute('fill', '#ffffff');
+          badgeText.textContent = seqBadge;
+          pinGroup.appendChild(badgeText);
+        }
+
         // Label
         const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
         label.setAttribute('x', spot.x);
         label.setAttribute('y', spot.y - 10);
         label.setAttribute('text-anchor', 'middle');
-        label.setAttribute('font-size', isSelected ? '11' : '9.5');
-        label.setAttribute('font-weight', isSelected ? '700' : '600');
-        label.setAttribute('fill', isSelected ? '#38bdf8' : 'currentColor');
+        label.setAttribute('font-size', isSelected ? '11' : (isCurrentDay ? '9.5' : '8.5'));
+        label.setAttribute('font-weight', isSelected || isCurrentDay ? '700' : '600');
+        label.setAttribute('fill', isSelected ? '#38bdf8' : (isCurrentDay ? 'currentColor' : '#94a3b8'));
         label.setAttribute('class', 'pointer-events-none drop-shadow-sm select-none');
         label.textContent = spot.name.split(' ')[0];
         pinGroup.appendChild(label);
@@ -800,7 +955,7 @@
         badge: "全景视角 · 山海城韵",
         desc: "青岛旅游带长约15公里，西起红瓦老城，中接八大关海滨，东达小麦岛与现代海湾。单日聚焦1个核心片区，拒绝特种兵赶场。",
         steps: [
-          { num: "西", text: "<b>老城历史区</b>：大教堂、总督楼迎宾馆、信号山落日、大鲍岛里院" },
+          { num: "西", text: "<b>老城历史区</b>：大教堂、中山路老街、总督楼迎宾馆、信号山落日、大鲍岛里院" },
           { num: "中", text: "<b>八大关海滨</b>：水杉林荫道、二浴礁石木栈道、花石楼、太平角海景咖啡 (🌟晨跑圣地)" },
           { num: "东", text: "<b>东部与崂山</b>：小麦岛草地日落音乐、啤酒博物馆1903、五四广场天际线" }
         ],
@@ -822,11 +977,18 @@
         icon: "🏮",
         title: "Day 1 慢游指引 · 抵青初探与里院烟火",
         badge: "历史街区 · 鲜啤海鲜",
-        desc: "抵青第一天拒绝赶路。下午漫步老城石板路欣赏大教堂双塔光影，傍晚走入青岛本土特色的里院建筑，品尝小海鲜与第一杯鲜扎啤。",
+        desc: "抵青第一天拒绝赶路。下午漫步大教堂欣赏双塔光影，顺坡漫步百年中山路老街，傍晚走入青岛本土特色的里院建筑，品尝小海鲜与第一杯鲜原浆扎啤。",
         steps: [
-          { num: "下", text: "<b>15:00 圣弥厄尔大教堂广场</b>：坐在石阶上看和平鸽，漫步湖北路德式老洋房街道。" },
-          { num: "傍", text: "<b>17:30 大鲍岛文化街区(广兴里)</b>：漫步中西合璧天井里院，看复古文创夜灯初上。" },
-          { num: "晚", text: "<b>19:00 里院特色海鲜与原浆</b>：品尝辣炒红岛蛤蜊、海肠捞饭与清冽原浆扎啤。" }
+          { num: "①", text: "<b>15:00 圣弥厄尔大教堂广场</b>：坐在石阶上看和平鸽，漫步湖北路德式老洋房街道。" },
+          { num: "②", text: "<b>16:30 百年中山路漫步</b>：打卡安娜别墅(巨型玫瑰)、1907光影俱乐部与百年名店春和楼。" },
+          { num: "③", text: "<b>17:30 大鲍岛文化街区(广兴里)</b>：漫步中西合璧天井里院，看复古文创夜灯初上。" },
+          { num: "④", text: "<b>19:00 里院特色海鲜与原浆</b>：品尝辣炒红岛蛤蜊、海肠捞饭与清冽原浆扎啤。" }
+        ],
+        dining: [
+          { tag: "☕ 庭院慢读", name: "安娜别墅·时光咖啡 (浙江路口)", desc: "百年欧式老洋房玫瑰花园，秋阳斜照，适合静坐翻书。" },
+          { tag: "🥟 本地老字号", name: "春和楼 (中山路146号，始于1891)", desc: "青岛最老鲁菜名店，必尝香酥鸡与三鲜蒸饺。" },
+          { tag: "🍜 暖胃特色", name: "老记大虾面 (中山路/肥城路口)", desc: "整颗鲜甜对虾与浓郁海鲜高汤，鲜香不腥。" },
+          { tag: "🍺 原浆精酿", name: "大鲍岛广兴里啤酒花园", desc: "在天井四合院下喝冷链原浆/白啤，配辣炒蛤蜊与烤鱿鱼。" }
         ],
         note: "💡 贴士：老街路面有轻微坡度，穿轻便平底鞋；大鲍岛灯光约18:30亮起，极具电影感。"
       },
@@ -834,11 +996,17 @@
         icon: "🏛️",
         title: "Day 2 慢游指引 · 红瓦绿树制高点与总督楼",
         badge: "奢华古堡 · 绝美夕阳",
-        desc: "青岛历史建筑美学的精华日。走进远东最奢华的德国总督楼官邸，漫步文人故居绿荫小巷，傍晚在信号山踏浪亭看夕阳染红满城红瓦。",
+        desc: "青岛历史建筑美学的精华日。走进远东最奢华的德国总督楼官邸，漫步文人故居绿荫小巷，在深巷庭院咖啡馆看书放空，傍晚在信号山踏浪亭看夕阳染红满城红瓦。",
         steps: [
-          { num: "上", text: "<b>09:30 德国总督楼旧址(迎宾馆)</b>：品读新罗马风巨石古堡、实木装潢与百年施坦威钢琴。" },
-          { num: "下", text: "<b>14:00 大学路与老舍故居</b>：走入黄县路幽静院落，在老洋房庭院咖啡馆静坐半下午。" },
-          { num: "落", text: "<b>16:45 信号山公园俯瞰</b>：15分钟漫步上山，踏浪亭360°俯瞰红瓦绿树碧海蓝天夕阳。" }
+          { num: "①", text: "<b>09:30 德国总督楼旧址(迎宾馆)</b>：品读新罗马风巨石古堡、实木装潢与百年施坦威钢琴。" },
+          { num: "②", text: "<b>14:00 大学路与老舍故居(黄县路)</b>：走入幽静老院落，在绿荫掩映的独立咖啡馆静坐看书放空。" },
+          { num: "③", text: "<b>16:45 信号山公园俯瞰</b>：15分钟漫步上山，踏浪亭360°俯瞰红瓦绿树碧海蓝天夕阳。" }
+        ],
+        dining: [
+          { tag: "☕ 绿荫慢读", name: "自力咖啡 (黄县路12号，老舍故居旁)", desc: "百年法桐绿荫斑驳，室内阳光通透，满架书籍，极适合阅读1-2小时。" },
+          { tag: "☕ 山海大窗", name: "半山咖啡 (观象一路半山坡)", desc: "二楼大落地窗推窗见绿树、红瓦斜顶与远海，秋阳倾洒，深度自然连接。" },
+          { tag: "🥟 地道水饺", name: "双合园水饺 (龙山路/迎宾馆周边)", desc: "必点鲜嫩多汁的招牌鲅鱼水饺与墨鱼水饺，用当季鲜韭菜提鲜。" },
+          { tag: "🥟 市井小吃", name: "海平馄饨 (老城总店)", desc: "青岛本土三十年老店，招牌蛋黄馄饨与微甜排骨汤。" }
         ],
         note: "💡 贴士：总督楼内部严禁拍照，建议静心细看工艺；信号山观景楼17:00停止售票，踏浪亭傍晚完全免费。"
       },
@@ -846,11 +1014,17 @@
         icon: "🏃",
         title: "Day 3 慢游指引 · 🌟高光晨跑与八大关洋房",
         badge: "水杉晨跑 · 礁石听浪",
-        desc: "晨跑与海滨度假的核心日。清晨体验八大关海滨木栈道晨跑，下午慢品花石楼古堡与公主楼童话，在太平角海岬老洋房咖啡馆看海放空。",
+        desc: "晨跑与海滨度假的核心日。清晨体验八大关海滨木栈道晨跑，下午慢品花石楼古堡与公主楼童话，在太平角海岬老洋房大窗边看海听浪读书放空。",
         steps: [
-          { num: "跑", text: "<b>06:15 专属海滨林荫晨跑</b>：正阳关路 ➔ 二浴 ➔ 太平角 (5.5km)，跑完回房冲凉午休。" },
-          { num: "下", text: "<b>14:30 慢游花石楼与公主楼</b>：登花石楼顶层天台俯瞰月牙湾，品读欧洲近代建筑。" },
-          { num: "傍", text: "<b>16:30 太平角海边下午茶</b>：坐在独栋老洋房临海窗边（如遇遇见海），听浪发呆。" }
+          { num: "①", text: "<b>06:15 专属海滨林荫晨跑</b>：正阳关路 ➔ 二浴 ➔ 太平角 (5.5km)，跑完回房冲凉午休。" },
+          { num: "②", text: "<b>14:30 慢游花石楼与公主楼</b>：登花石楼顶层天台俯瞰月牙湾，品读欧洲近代建筑。" },
+          { num: "③", text: "<b>16:30 太平角海边老洋房咖啡</b>：坐在独栋老洋房临海窗边（遇遇见海），听浪发呆看书。" }
+        ],
+        dining: [
+          { tag: "☕ 绝美海浪", name: "【遇遇见海】(太平角一路21号)", desc: "二楼270°全景海景大窗直面黄海，黑松与拍岸浪花，看海看书天花板。" },
+          { tag: "☕ 林荫天窗", name: "【海怪咖啡 · C-UP 宋公馆店】(居庸关路)", desc: "高耸水杉环抱的玻璃花房，碎金天光透过针叶洒下，沉浸式深林呼吸感。" },
+          { tag: "☕ 欧式庭院", name: "【比利时领事馆旧址文化咖啡】(太平角一路19号)", desc: "百年石砌领事馆与独立绿意花园，海风吹拂，文化厚重安静。" },
+          { tag: "🥟 海边私房", name: "太平角独栋洋房小海鲜 / 遇·私房菜", desc: "在海边老洋房品尝葱烧海参、油泼鸟贝与温拌海螺，雅致慢调。" }
         ],
         note: "💡 贴士：住威斯汀清晨打车7分钟(¥10)直达起跑点；八大关禁止外地网约车穿行，步行漫游最舒适。"
       },
@@ -858,11 +1032,18 @@
         icon: "🍺",
         title: "Day 4 慢游指引 · 百年工业传奇与海上草坪",
         badge: "原浆生啤 · 麦岛落日",
-        desc: "感受青岛百年啤酒工业血脉，午后前往360度环海的小麦岛公园，在绿色大草坡上看海、吹风、听民间吉他民谣迎落日。",
+        desc: "感受青岛百年啤酒工业血脉，午后前往360度环海的小麦岛公园，在绿色大草坡上看海、吹风、听民间吉他民谣迎落日，晚间看奥帆浮山湾夜景。",
         steps: [
-          { num: "上", text: "<b>10:00 青岛啤酒博物馆</b>：探秘1903糖化车间，免费品尝刚出酒罐的未过滤生原浆鲜啤。" },
-          { num: "下", text: "<b>15:30 小麦岛公园海上绿岛</b>：走过栈桥登上草坪，打卡孤独的树与环岛海浪礁石。" },
-          { num: "落", text: "<b>17:00-18:30 草坪落日音乐会</b>：坐在草坡上看金色晚霞沉入海面，民间吉他弹唱氛围拉满。" }
+          { num: "①", text: "<b>10:00 青岛啤酒博物馆</b>：探秘1903糖化车间，免费品尝刚出酒罐的未过滤生原浆鲜啤。" },
+          { num: "②", text: "<b>15:30 小麦岛公园海上绿岛</b>：走过栈桥登上草坪，打卡孤独的树与环岛海浪礁石。" },
+          { num: "③", text: "<b>17:00-18:30 草坪落日音乐会</b>：坐在草坡上看金色晚霞沉入海面，民间吉他弹唱氛围拉满。" },
+          { num: "④", text: "<b>19:30 奥帆中心与五四广场</b>：散步港湾情人坝看千帆泊岸与浮山湾现代高楼灯光秀。" }
+        ],
+        dining: [
+          { tag: "🍺 百年原浆", name: "青岛啤酒博物馆内1903原浆品尝", desc: "参观中途免费品尝带活酵母的未过滤生原浆鲜啤与特制啤酒豆，麦香极醇。" },
+          { tag: "☕ 草地落日", name: "麦岛有风 / 小麦岛海边遮阳伞咖啡", desc: "坐在面向大海的绿草坡旁，喝冰美式吹海风，听民间吉他看金色落日。" },
+          { tag: "🥟 现象级海鲜", name: "开海·红岛海鲜虾水饺 (万象城店)", desc: "威斯汀对面，青岛高品质海鲜代表，每颗水饺都有整只脆甜大虾与辣炒小鲍鱼。" },
+          { tag: "🥟 鲁菜本帮", name: "前海沿·老青岛家常菜 (万象城/香港中路店)", desc: "大虾烧白菜（汤汁拌饭一绝）、香酥炸五花肉，地道实惠。" }
         ],
         note: "💡 贴士：啤酒博物馆门票含2杯鲜啤与特制啤酒豆；小麦岛傍晚海风微凉，备一件防风薄外套。"
       },
@@ -872,9 +1053,13 @@
         badge: "栈桥海鸥 · 琴屿清风",
         desc: "10月1日国庆首日客流大幅攀升，特意安排清晨错峰漫步栈桥与琴屿路，避开上午大巴旅行团，悠闲退房，从容踏上归途。",
         steps: [
-          { num: "晨", text: "<b>07:30 栈桥与回澜阁</b>：早起避开旅行团大巴，晨光洒在海面，秋季海鸥翱翔长桥两侧。" },
-          { num: "早", text: "<b>09:00 琴屿路S弯漫步</b>：沿海蚀红礁石步道漫步，远眺小青岛白色灯塔与清澈波涛。" },
-          { num: "归", text: "<b>11:00 悠闲打包退房</b>：回酒店整理行李，万象城午餐后前往机场/高铁站从容返程。" }
+          { num: "①", text: "<b>07:30 栈桥与回澜阁</b>：早起避开旅行团大巴，晨光洒在海面，秋季海鸥翱翔长桥两侧。" },
+          { num: "②", text: "<b>09:00 琴屿路S弯漫步</b>：沿海蚀红礁石步道漫步，远眺小青岛白色灯塔与清澈波涛。" },
+          { num: "③", text: "<b>11:00 悠闲打包退房</b>：回酒店整理行李，万象城午餐后前往机场/高铁站从容返程。" }
+        ],
+        dining: [
+          { tag: "☕ 听浪看塔", name: "独白咖啡 (Monologue) / 宿喃·海景咖啡 (琴屿路)", desc: "S弯海滨路旁，窗外是清澈浪花、红褐色礁石与小青岛白色灯塔，晨光极治愈。" },
+          { tag: "🥟 离青手信", name: "鹏程脂渣 / 崂山石竹茶 / 1903文创精酿礼盒", desc: "香脆不腻的传统青岛脂渣（配酒神器）与新鲜下线的纪念版青啤。" }
         ],
         note: "💡 贴士：国庆首日火车站与机场人流激增，建议提前至少2小时到达交通枢纽。"
       }
@@ -907,7 +1092,7 @@
         availableSpots = landmarks.filter(l => l.id === 'badaguan' || l.id === 'taipingjiao');
         tagEl.textContent = '晨跑关键节点';
       } else if (filter.startsWith('day')) {
-        availableSpots = landmarks.filter(l => l.day === filter);
+        availableSpots = landmarks.filter(l => (l.days ? l.days.includes(filter) : l.day === filter));
         tagEl.textContent = filter.toUpperCase().replace('DAY', 'Day ') + ' 包含景点';
       }
 
@@ -946,6 +1131,38 @@
         `;
         stepsBox.appendChild(row);
       });
+
+      // Render dining options if available
+      const diningBox = document.getElementById('dynamicDayDining');
+      if (diningBox) {
+        if (cfg.dining && cfg.dining.length > 0) {
+          diningBox.style.display = 'block';
+          diningBox.innerHTML = `
+            <div class="text-[11px] font-bold text-[var(--foreground)] flex items-center justify-between pt-1">
+              <span class="flex items-center gap-1"><span>🍽️</span> 途径特色吃喝 & 慢读咖啡 (自由自选)</span>
+              <span class="text-[10px] text-sky-600 bg-sky-500/10 px-2 py-0.5 rounded-full font-normal">沿途精选</span>
+            </div>
+            <div class="grid grid-cols-1 gap-1.5 mt-1">
+              ${cfg.dining.map(d => {
+                const isCafe = d.tag.includes('咖啡') || d.tag.includes('读') || d.tag.includes('海浪');
+                const tagClass = isCafe ? 'bg-rose-500/10 text-rose-600 border-rose-500/20' : (d.tag.includes('原浆') ? 'bg-amber-500/10 text-amber-600 border-amber-500/20' : 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20');
+                return `
+                  <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-2 text-xs space-y-0.5">
+                    <div class="flex items-center justify-between">
+                      <span class="font-bold text-[var(--foreground)] text-[11px]">${d.name}</span>
+                      <span class="text-[9.5px] px-1.5 py-0.5 rounded-full border ${tagClass} font-semibold">${d.tag}</span>
+                    </div>
+                    <p class="text-[10.5px] text-[var(--muted-foreground)] leading-snug">${d.desc}</p>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          `;
+        } else {
+          diningBox.style.display = 'none';
+          diningBox.innerHTML = '';
+        }
+      }
     }
 
     // Highlight active day in bottom quick reference
