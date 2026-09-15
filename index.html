@@ -98,6 +98,19 @@
         <!-- Injected via JS -->
       </div>
 
+      <!-- Dining & Nature Reading Cafe Options (Along the route) -->
+      <div class="space-y-2 pt-2 border-t border-[var(--border)]">
+        <div class="flex items-center justify-between text-xs font-bold text-[var(--foreground)]">
+          <span class="flex items-center gap-1.5">
+            <span>🍽️</span> 途径特色吃喝与慢读咖啡 (随行自选)
+          </span>
+          <span class="text-[10px] text-sky-600 bg-sky-500/10 px-2 py-0.5 rounded-full font-normal">沿途精选</span>
+        </div>
+        <div id="mDiningList" class="space-y-2">
+          <!-- Injected via JS -->
+        </div>
+      </div>
+
       <!-- Quick Tips Box -->
       <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-3 text-xs text-[var(--muted-foreground)] flex items-start gap-2">
         <span class="text-amber-500 text-sm">💡</span>
@@ -285,13 +298,19 @@
         title: "Day 1 慢游 · 抵青初探与里院烟火",
         tag: "历史街区 · 鲜啤海鲜",
         icon: "🏮",
-        desc: "抵青第一天拒绝赶路。下午在老城看德式双塔大教堂，傍晚走入青岛本土特色的里院建筑品尝小海鲜与鲜原浆扎啤。",
+        desc: "抵青第一天拒绝赶路。下午在老城看德式双塔大教堂，漫步中山路老街，傍晚走入青岛本土特色的里院建筑品尝小海鲜与鲜原浆扎啤。",
         tips: "老街路面有轻微坡度，穿轻便平底鞋；大鲍岛灯光约18:30亮起，极具电影感。",
         schedule: [
           { time: "15:00 - 16:30", spot: "圣弥厄尔大教堂广场", desc: "坐在石阶上看和平鸽与双塔钟楼，漫步湖北路看德式老楼。", badge: "门票¥10/广场免费" },
           { time: "16:30 - 17:30", spot: "中山路百年商业老街 (漫步)", desc: "顺坡下行漫步中山路主轴，打卡安娜别墅(巨型玫瑰)、1907光影俱乐部与春和楼老字号。", badge: "百年第一街" },
           { time: "17:30 - 19:30", spot: "大鲍岛文化街区(广兴里)", desc: "沿中山路北行直入里院街区，看中西合璧天井院落，入夜后灯火斑斓。", badge: "街区免费" },
           { time: "19:30 - 21:00", spot: "里院特色晚餐与原浆扎啤", desc: "品尝辣炒蛤蜊、海肠捞饭与清冽原浆扎啤。", badge: "美食打卡" }
+        ],
+        diningOptions: [
+          { tag: "☕ 庭院慢读", name: "安娜别墅·时光咖啡 (浙江路口)", desc: "百年欧式老洋房玫瑰花园，秋日阳光斜斜地洒在桌上，很适合静坐翻书。" },
+          { tag: "🥟 本地老字号", name: "春和楼 (中山路146号，始于1891)", desc: "青岛最老鲁菜名店，必点香酥鸡（外脆里嫩椒盐香）与三鲜蒸饺。" },
+          { tag: "🍜 暖胃特色", name: "老记大虾面 (中山路/肥城路口)", desc: "浓郁海虾高汤与整颗鲜甜对虾，汤头鲜美无腥味。" },
+          { tag: "🍺 原浆精酿", name: "大鲍岛广兴里啤酒花园", desc: "中西合璧四合院天井下喝冷链原浆/白啤，搭配辣炒红岛蛤蜊与烤鱿鱼。" }
         ]
       },
       day2: {
@@ -302,8 +321,14 @@
         tips: "总督楼内部严禁拍照，建议静心细看工艺；信号山观景楼17:00停止售票，踏浪亭傍晚完全免费。",
         schedule: [
           { time: "09:30 - 11:30", spot: "德国总督楼旧址(迎宾馆)", desc: "品读新罗马风巨石古堡、实木装潢与百年施坦威钢琴。", badge: "门票¥20 (周一闭馆)" },
-          { time: "14:00 - 16:30", spot: "大学路与老舍故居(黄县路)", desc: "走进黄县路幽静院落，找一家红瓦老洋房庭院咖啡馆小憩。", badge: "免费漫步" },
+          { time: "14:00 - 16:30", spot: "大学路与老舍故居(黄县路)", desc: "走进黄县路幽静院落，找一家红瓦老洋房庭院咖啡馆小憩看书。", badge: "免费漫步" },
           { time: "16:45 - 18:15", spot: "信号山公园 (360°日落)", desc: "15分钟登上踏浪亭，俯瞰夕阳金光染红满城红瓦绿树与碧海。", badge: "公园免费/楼¥10" }
+        ],
+        diningOptions: [
+          { tag: "☕ 绿荫慢读", name: "自力咖啡 (黄县路12号，老舍故居旁)", desc: "深巷幽静老庭院，百年法桐绿荫斑驳，室内阳光通透，满架书籍，极适合阅读。" },
+          { tag: "☕ 山海大窗", name: "半山咖啡 (观象一路半山坡)", desc: "二楼大落地窗推窗见绿树、红瓦斜顶与远海，秋阳倾洒，与自然深度连接。" },
+          { tag: "🥟 地道水饺", name: "双合园水饺 (龙山路/迎宾馆周边)", desc: "必点鲜嫩爆汁的鲅鱼水饺（用新鲜韭菜提鲜）与墨鱼水饺，地道胶东味。" },
+          { tag: "🥟 市井小吃", name: "海平馄饨 (老城总店)", desc: "青岛本土三十年回忆，招牌蛋黄馄饨、烤鸡心与微甜排骨汤。" }
         ]
       },
       day3: {
@@ -316,6 +341,12 @@
           { time: "06:15 - 07:30", spot: "八大关海滨林荫晨跑 (5.5km)", desc: "正阳关路水杉道 ➔ 二浴木栈道 ➔ 太平角公园海滨，神清气爽。", badge: "核心高光时刻" },
           { time: "14:30 - 16:30", spot: "八大关 (花石楼 / 公主楼)", desc: "登花石楼顶层天台俯瞰月牙形第二海水浴场，看万国建筑。", badge: "花石楼¥8.5" },
           { time: "16:30 - 18:00", spot: "太平角公园海边咖啡馆", desc: "坐在独栋老洋房临海窗边（如遇遇见海），听浪涛发呆看日落。", badge: "惬意下午茶" }
+        ],
+        diningOptions: [
+          { tag: "☕ 绝美海浪", name: "【遇遇见海】(太平角一路21号)", desc: "临海礁石老别墅，二楼270°全景海景大窗直面黄海，黑松与拍岸浪花，看书看海天花板。" },
+          { tag: "☕ 林荫天窗", name: "【海怪咖啡 · C-UP 宋公馆店】(居庸关路)", desc: "高耸水杉环抱的历史公馆玻璃花房，阳光洒下碎金般光斑，四周绿植青苔，深林呼吸感。" },
+          { tag: "☕ 欧式庭院", name: "【比利时领事馆旧址文化咖啡】(太平角一路19号)", desc: "百年石砌领事馆，带独立绿意花园，海风吹拂，文化厚重安静。" },
+          { tag: "🥟 海边私房", name: "太平角独栋洋房小海鲜 / 遇·私房菜", desc: "在海边洋房品尝葱烧海参、油泼鸟贝与温拌海螺，雅致慢调。" }
         ]
       },
       day4: {
@@ -328,6 +359,12 @@
           { time: "10:00 - 12:00", spot: "青岛啤酒博物馆 (登州路56号)", desc: "探秘1903糖化车间，免费品尝刚出酒罐的未过滤生原浆鲜啤。", badge: "门票约¥60(含酒)" },
           { time: "15:30 - 18:30", spot: "小麦岛公园 (海上大草坪)", desc: "走过栈桥登上草坪，坐在草坡听吉他民谣弹唱，看金色日落。", badge: "免费开放" },
           { time: "19:30 - 20:30", spot: "奥帆中心与五四广场", desc: "散步港湾看千帆泊岸与浮山湾现代高楼夜景灯光秀。", badge: "夜景观赏" }
+        ],
+        diningOptions: [
+          { tag: "🍺 百年原浆", name: "青岛啤酒博物馆内1903原浆品尝", desc: "参观中途免费品尝带活酵母的未过滤生原浆鲜啤与特制啤酒豆，麦香极醇。" },
+          { tag: "☕ 草地落日", name: "麦岛有风 / 小麦岛海边遮阳伞咖啡", desc: "坐在面向大海的绿草坡旁，喝冰美式吹海风，听民间吉他民谣看金色落日。" },
+          { tag: "🥟 现象级海鲜", name: "开海·红岛海鲜虾水饺 (万象城店)", desc: "青岛高品质海鲜代表，必点招牌虾水饺（每颗都有整只脆甜大虾）与辣炒小鲍鱼。" },
+          { tag: "🥟 鲁菜本帮", name: "前海沿·老青岛家常菜 (万象城/香港中路)", desc: "青岛家常味：大虾烧白菜（汤汁拌饭绝了）、香酥炸五花肉。" }
         ]
       },
       day5: {
@@ -340,6 +377,10 @@
           { time: "07:30 - 09:00", spot: "栈桥与回澜阁 (清晨避峰)", desc: "早起避开旅行团大巴，晨光洒在海面，秋季海鸥翱翔长桥两侧。", badge: "免费无预约" },
           { time: "09:00 - 10:15", spot: "琴屿路S弯 & 小青岛", desc: "沿海蚀红礁石步道漫步，远眺小青岛白色灯塔与清澈波涛。", badge: "免费漫步" },
           { time: "11:00 前往车站", spot: "悠闲退房与返程", desc: "回酒店整理行李退房，万象城午餐后前往机场/高铁站。", badge: "从容告别青岛" }
+        ],
+        diningOptions: [
+          { tag: "☕ 听浪看塔", name: "独白咖啡 (Monologue) / 宿喃·海景咖啡 (琴屿路)", desc: "S弯海滨路旁，窗外是清澈浪花、红褐色礁石与小青岛白色灯塔，晨光极治愈。" },
+          { tag: "🥟 离青手信", name: "鹏程脂渣 / 崂山石竹茶 / 1903文创精酿礼盒", desc: "香脆不腻的传统青岛脂渣（配酒神器）与新鲜下线的纪念版青啤。" }
         ]
       }
     };
@@ -421,6 +462,29 @@
         `;
         list.appendChild(card);
       });
+
+      // Render Dining & Reading Cafe Options
+      const diningList = document.getElementById('mDiningList');
+      if (diningList) {
+        diningList.innerHTML = '';
+        (data.diningOptions || []).forEach(opt => {
+          const item = document.createElement('div');
+          const isCafe = opt.tag.includes('咖啡') || opt.tag.includes('读') || opt.tag.includes('海浪');
+          const tagClass = isCafe 
+            ? 'bg-rose-500/10 text-rose-600 border-rose-500/20' 
+            : (opt.tag.includes('原浆') || opt.tag.includes('啤') ? 'bg-amber-500/10 text-amber-600 border-amber-500/20' : 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20');
+          
+          item.className = "bg-[var(--card)] border border-[var(--border)] rounded-xl p-2.5 shadow-xs space-y-1 text-xs";
+          item.innerHTML = `
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-xs text-[var(--foreground)]">${opt.name}</span>
+              <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full border ${tagClass}">${opt.tag}</span>
+            </div>
+            <p class="text-[11px] text-[var(--muted-foreground)] leading-snug">${opt.desc}</p>
+          `;
+          diningList.appendChild(item);
+        });
+      }
     }
 
     // Render Spots Directory
