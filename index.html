@@ -324,30 +324,90 @@
             <!-- Dynamic Daily Route Path Connector -->
             <g id="dayRouteGroup"></g>
 
-            <!-- Morning Run Track Layer (5.5km) -->
-            <g id="morningRunGroup" class="transition-all duration-300" opacity="0.85">
-              <path id="morningRunTrack" d="M 430,355 
-                         C 450,335 470,325 485,325
-                         L 505,335
-                         L 505,385
-                         C 515,398 535,395 550,380
-                         C 565,370 575,400 580,410
-                         C 590,415 605,395 615,365" 
-                    fill="none" 
-                    stroke="#10b981" 
-                    stroke-width="4.5" 
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-dasharray="6 3" />
-              
-              <!-- Start / End flags -->
-              <g transform="translate(425, 345)">
-                <circle cx="0" cy="0" r="4.5" fill="#10b981" />
-                <text x="-6" y="-7" font-size="8.5" font-weight="700" fill="#10b981">起:正阳关路</text>
+            <!-- Morning Run Path Layer (Detailed Runner Navigator) -->
+            <g id="morningRunGroup" class="transition-all duration-300" opacity="0.95">
+              <!-- Route A: Badaguan Seaside Loop (5.2 km) -->
+              <g id="runSubRouteA" class="transition-all duration-300">
+                <!-- Asphalt Warm-up (Zhengyangguan Rd) -->
+                <path d="M 465,310 L 485,335 L 500,360" fill="none" stroke="#10b981" stroke-width="4" stroke-dasharray="5 2.5" />
+                
+                <!-- Wooden Coastal Boardwalk (Second Beach -> Taipingjiao Cape) - Glow & Distinct styling -->
+                <path d="M 500,360 C 505,378 515,394 535,396 C 555,398 575,412 588,392 C 594,375 582,355 565,340" 
+                      fill="none" stroke="#059669" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M 500,360 C 505,378 515,394 535,396 C 555,398 575,412 588,392 C 594,375 582,355 565,340" 
+                      fill="none" stroke="#34d399" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 4" class="run-path" />
+
+                <!-- Pine Park & Juyongguan Cool-down Return Loop -->
+                <path d="M 565,340 C 545,325 515,315 485,315 L 465,310" fill="none" stroke="#10b981" stroke-width="3.5" stroke-dasharray="5 2.5" />
+
+                <!-- Milestones & Visual Baton Markers -->
+                <!-- 0km Start (Zhengyangguan Metasequoia) -->
+                <g transform="translate(465, 310)">
+                  <circle cx="0" cy="0" r="5" fill="#10b981" stroke="#fff" stroke-width="1.5" />
+                  <rect x="-35" y="-22" width="70" height="15" rx="3" fill="#064e3b" fill-opacity="0.88" />
+                  <text x="0" y="-11" font-size="8" font-weight="700" fill="#a7f3d0" text-anchor="middle">🏁 起点 0km (水杉)</text>
+                </g>
+
+                <!-- 1.2km Second Beach (Wooden Boardwalk Begins) -->
+                <g transform="translate(500, 365)">
+                  <circle cx="0" cy="0" r="4.5" fill="#059669" stroke="#fff" stroke-width="1.2" />
+                  <rect x="-36" y="-19" width="72" height="15" rx="3" fill="#064e3b" fill-opacity="0.88" />
+                  <text x="0" y="-8" font-size="8" font-weight="700" fill="#6ee7b7" text-anchor="middle">🚩 1.2km 二浴木栈道</text>
+                </g>
+
+                <!-- 3.0km Taipingjiao Cape (Wave Listening Point) -->
+                <g transform="translate(588, 395)">
+                  <circle cx="0" cy="0" r="4.5" fill="#059669" stroke="#fff" stroke-width="1.2" />
+                  <rect x="-38" y="8" width="76" height="15" rx="3" fill="#064e3b" fill-opacity="0.88" />
+                  <text x="0" y="19" font-size="8" font-weight="700" fill="#6ee7b7" text-anchor="middle">🚩 3.0km 太平角岬角</text>
+                </g>
+
+                <!-- 4.2km Pine Park Exit (Restroom & Water Vending) -->
+                <g transform="translate(565, 335)">
+                  <circle cx="0" cy="0" r="4.5" fill="#10b981" stroke="#fff" stroke-width="1.2" />
+                  <rect x="-38" y="-19" width="76" height="15" rx="3" fill="#064e3b" fill-opacity="0.88" />
+                  <text x="0" y="-8" font-size="8" font-weight="700" fill="#a7f3d0" text-anchor="middle">💧 4.2km 公园(补水)</text>
+                </g>
+
+                <!-- Surface Material Badges -->
+                <text x="545" y="420" font-size="8.5" font-weight="700" fill="#059669" text-anchor="middle">🌊 核心实木栈道段 · 右手听浪无岔路 (2.3km)</text>
+                <text x="515" y="308" font-size="8" font-weight="600" fill="#10b981">居庸关路法桐林荫回程</text>
               </g>
-              <g transform="translate(615, 360)">
-                <circle cx="0" cy="0" r="4.5" fill="#059669" />
-                <text x="6" y="-3" font-size="8.5" font-weight="700" fill="#059669">终:太平角(5.5km)</text>
+
+              <!-- Route B: May 4th Square - Olympic Sailing - Lover's Dam Lighthouse (5.5 km Out-and-Back) -->
+              <g id="runSubRouteB" class="transition-all duration-300" opacity="0.6">
+                <!-- Westin South on Shandong Rd -> May 4th Red Wind -->
+                <path d="M 705,260 L 705,335" fill="none" stroke="#0284c7" stroke-width="4" stroke-dasharray="5 2.5" />
+                
+                <!-- Coastal Eastward -> Olympic Sailing Marina -> Lover's Dam -->
+                <path d="M 705,335 C 715,348 735,355 750,365 L 765,395 L 778,435" 
+                      fill="none" stroke="#0369a1" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M 705,335 C 715,348 735,355 750,365 L 765,395 L 778,435" 
+                      fill="none" stroke="#38bdf8" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 4" class="run-path" />
+
+                <!-- Markers for Route B -->
+                <!-- Westin Hotel Start (0km) -->
+                <g transform="translate(705, 260)">
+                  <circle cx="0" cy="0" r="4.5" fill="#0284c7" stroke="#fff" stroke-width="1.2" />
+                  <rect x="8" y="-8" width="76" height="15" rx="3" fill="#082f49" fill-opacity="0.88" />
+                  <text x="46" y="3" font-size="8" font-weight="700" fill="#bae6fd" text-anchor="middle">🏁 威斯汀起点 0km</text>
+                </g>
+
+                <!-- May 4th Torch (Turn Left Eastward) -->
+                <g transform="translate(705, 335)">
+                  <circle cx="0" cy="0" r="4.5" fill="#ef4444" stroke="#fff" stroke-width="1.2" />
+                  <rect x="-85" y="-8" width="78" height="15" rx="3" fill="#450a0a" fill-opacity="0.88" />
+                  <text x="-46" y="3" font-size="8" font-weight="700" fill="#fecaca" text-anchor="middle">🚩 0.6km 红火炬(左拐)</text>
+                </g>
+
+                <!-- Lover's Dam Lighthouse (180 deg U-turn) -->
+                <g transform="translate(778, 435)">
+                  <circle cx="0" cy="0" r="5" fill="#0284c7" stroke="#fff" stroke-width="1.5" />
+                  <rect x="-44" y="8" width="88" height="15" rx="3" fill="#082f49" fill-opacity="0.88" />
+                  <text x="0" y="19" font-size="8" font-weight="700" fill="#38bdf8" text-anchor="middle">🔄 2.8km/折返(白灯塔)</text>
+                </g>
+
+                <text x="750" y="415" font-size="8" font-weight="700" fill="#0284c7">情人坝500m深海长堤</text>
               </g>
             </g>
 
@@ -559,7 +619,7 @@
         desc: "清晨体验八大关海滨木栈道晨跑，下午慢品花石楼古堡与公主楼童话，在太平角海岬老洋房咖啡馆看海放空。",
         tips: "住威斯汀清晨打车7分钟(¥10)直达起跑点；八大关禁止外地网约车穿行，步行漫游最舒适。",
         schedule: [
-          { time: "06:15 - 07:30", spot: "八大关海滨林荫晨跑 (5.5km)", desc: "正阳关路水杉道 ➔ 二浴木栈道 ➔ 太平角公园海滨，神清气爽。", badge: "核心高光时刻" },
+          { time: "06:15 - 07:30", spot: "八大关海滨林荫晨跑 (5.2km/5.5km)", desc: "正阳关路水杉道 ➔ 二浴木栈道 ➔ 太平角海角 ➔ 居庸关路。<br><button onclick=\"viewDayOnMap('run')\" class=\"mt-2 inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-bold shadow-xs transition\">🏃 开启晨跑无手机自导向线路 & 记忆口诀 ➔</button>", badge: "核心高光时刻" },
           { time: "14:30 - 16:30", spot: "八大关 (花石楼 / 公主楼)", desc: "登花石楼顶层天台俯瞰月牙形第二海水浴场，看万国建筑。", badge: "花石楼¥8.5" },
           { time: "16:30 - 18:00", spot: "太平角公园海边咖啡馆", desc: "坐在独栋老洋房临海窗边（如遇遇见海），听浪涛发呆看日落。", badge: "惬意下午茶" }
         ],
@@ -860,6 +920,191 @@
       }
     ];
 
+    // Dedicated Morning Run Routes Configuration (Self-Navigating Without Phone)
+    const runRoutesConfig = {
+      routeA: {
+        id: 'routeA',
+        name: '路线 A · 八大关·水杉林荫与礁石木栈道 5.2km 环线 (首选推荐)',
+        badge: '全封闭木栈道 · 听浪无车',
+        slogan: '“水杉下坡见大海 ➔ 踩上木栈道右手贴浪跑 ➔ 绕过海岬入松林 ➔ 沿法桐回家”',
+        desc: '八大关是青岛慢跑的天花板。清晨 06:15 车辆极少，林木静谧。<b>右手是大海，永远不迷路</b>；脚下木板声和耳边浪涛声就是天然领航员。',
+        supply: '🚻 卫生间与售水机：第 1.2km 处（第二海水浴场正门）及第 4.2km 处（太平角公园正门西侧）。',
+        batons: [
+          { step: '1', title: '正阳关路水杉林起跑', distance: '0.0 - 1.2km', visual: '两排冲天笔直的高大水杉树，一路顺着缓下坡朝海风吹来的方向直跑。', sensory: '平坦安静沥青路面，晨风吹拂，轻快热身。' },
+          { step: '2', title: '第二海水浴场·踏上木栈道', distance: '1.2 - 2.2km', visual: '看到半月形金色沙滩，右侧树冠露出花石楼欧式古堡尖顶，直接踩上滨海木栈道。', sensory: '脚下瞬间发出空心木板“咚咚”声，海浪在脚边拍打红礁石。' },
+          { step: '3', title: '太平角岬角·顺弧绕海', distance: '2.2 - 3.5km', visual: '木栈道绕着凸出海面的岬角画出大圆弧，正前方突然出现浮山湾摩天楼天际线。', sensory: '开阔海风与初升朝霞，无任何机动车或岔路。' },
+          { step: '4', title: '松林绿道 ➔ 居庸关路回程', distance: '3.5 - 5.2km', visual: '看到红顶洋房(遇美)，穿出黑松林大门，沿两旁遮天蔽日的法国梧桐林荫路慢跑回正阳关路。', sensory: '弹性塑胶绿道 ➔ 梧桐沥青缓坡，呼吸平复，闭环拉伸。' }
+        ],
+        surfaces: [
+          { range: '0.0 ~ 1.2km', type: '平整柏油', feel: '水杉林荫，下坡热身' },
+          { range: '1.2 ~ 3.5km', type: '滨海实木栈道', feel: '空心木板触感，海风伴耳' },
+          { range: '3.5 ~ 4.2km', type: '公园彩色步道', feel: '微弹性松针绿道，补水节点' },
+          { range: '4.2 ~ 5.2km', type: '法桐林荫缓坡', feel: '梧桐叶遮阴，冷身冲刺' }
+        ],
+        mistakes: [
+          '⚠️ <b>不要在八大关街区内钻小弄堂</b>：新手只认水杉大道直奔大海，只要踩上木栈道，大海就在右手，绝不可能迷路！',
+          '⚠️ <b>不要深踩沙滩</b>：木栈道中途有下到沙滩的石阶，留在木板主路上跑，沙地阻力大且易进沙伤脚。',
+          '⚠️ <b>太平角出弯防过冲</b>：出公园大门若看到宽阔多车道的香港西路，说明多跑了100米，立刻沿路向西跑回居庸关路即可。'
+        ],
+        afterRun: [
+          { name: '第二海水浴场木栈道长椅', tag: '🧘 绝佳拉伸地', desc: '跑完全程坐在面海的长椅上，喝温水、看日出波光粼粼，身心彻底被唤醒。' },
+          { name: '遇看见海·海景咖啡 (太平角)', tag: '☕ 跑后惬意坐', desc: '上午开门后可独享临海大窗，听浪读一本好书，开启悠闲上午。' }
+        ]
+      },
+      routeB: {
+        id: 'routeB',
+        name: '路线 B · 浮山湾·奥帆中心与情人坝海中灯塔 5.5km 折返 (威斯汀直达)',
+        badge: '海中深道 · 现代天际线',
+        slogan: '“出门向南见红火炬 ➔ 沿海左拐进帆船港 ➔ 冲上海中大坝 ➔ 摸白色灯塔 180° 原路返回”',
+        desc: '住在威斯汀酒店下楼即跑。全程只有 1 个转弯点、1 个折返点，<b>在直插黄海 500 米的防浪大坝中央奔跑</b>，两边都是海水，视野极其震撼。',
+        supply: '🚻 卫生间与售水机：五四广场地下商场入口、奥帆游艇港旗阵广场、情人坝入口。',
+        batons: [
+          { step: '1', title: '威斯汀大堂朝南直冲', distance: '0.0 - 0.6km', visual: '走出酒店正门，沿山东路朝正南方向直跑下坡，奔向海岸线。', sensory: '宽阔城市人行道，清晨清爽，极快进入节奏。' },
+          { step: '2', title: '五四广场“五月的风”左拐', distance: '0.6 - 1.8km', visual: '正前方看到巨型火红色螺旋火炬雕塑，到达海边立刻向左（向东）跑入海滨步行街。', sensory: '海风扑面，红火炬巍峨，进入无车步行街。' },
+          { step: '3', title: '奥帆中心与情人坝长堤', distance: '1.8 - 2.8km', visual: '左手是白帆林立的游艇码头与奥运五环旗，正前方踏上一条直插大海深处的白色平整大坝。', sensory: '宽阔花岗岩地面，游艇缆绳轻响，两侧全被大海包围。' },
+          { step: '4', title: '情人坝白色尽头灯塔折返', distance: '2.8 - 5.5km', visual: '在大海中央500米长堤尽头，触摸白色圆柱灯塔基座，180°原地掉头原路跑回酒店。', sensory: '回程视野正对五四广场与浮山湾摩天楼朝霞天际线，气势磅礴。' }
+        ],
+        surfaces: [
+          { range: '0.0 ~ 0.6km', type: '城市人行道', feel: '平坦下坡，直奔海边' },
+          { range: '0.6 ~ 2.2km', type: '海滨亲水步道', feel: '超宽阔花岗岩步道，海风拂面' },
+          { range: '2.2 ~ 2.8km', type: '海中防波堤直道', feel: '直插黄海深处500米，双侧全是大海' }
+        ],
+        mistakes: [
+          '⚠️ <b>出门只认正南下坡</b>：只要视野正前方出现巨型红火炬，说明方向100%正确。',
+          '⚠️ <b>海边必须向东（左手）转</b>：到海边后切勿向西跑（向西是音乐广场礁石盲端），往左手帆船码头方向跑。',
+          '⚠️ <b>摸灯塔即原路掉头</b>：灯塔是海中尽头，摸塔后180度原路跑回，零岔路绝对不可能迷路。'
+        ],
+        afterRun: [
+          { name: '情人坝灯塔观景台', tag: '🌅 绝美日出点', desc: '折返前在灯塔脚下看黄海晨光映照整个浮山湾天际线，壮美开阔。' },
+          { name: '威斯汀酒店行政酒廊/早餐厅', tag: '🍳 丰盛早餐补给', desc: '跑回酒店直接上楼冲热水澡，享用热腾腾的鲜榨果汁与现煮馄饨。' }
+        ]
+      }
+    };
+
+    let currentMobileRunSubRoute = 'routeA';
+
+    // Switch Mobile Morning Run SubRoute (Route A vs Route B)
+    function selectMobileRunSubRoute(routeKey) {
+      currentMobileRunSubRoute = routeKey;
+      const r = runRoutesConfig[routeKey];
+      if (!r) return;
+
+      // Update SVG SubRoute opacities
+      const groupA = document.getElementById('runSubRouteA');
+      const groupB = document.getElementById('runSubRouteB');
+      if (groupA && groupB) {
+        if (routeKey === 'routeA') {
+          groupA.setAttribute('opacity', '1');
+          groupB.setAttribute('opacity', '0.15');
+        } else {
+          groupB.setAttribute('opacity', '1');
+          groupA.setAttribute('opacity', '0.15');
+        }
+      }
+
+      // Update Header Card in Map view
+      document.getElementById('mSpatialIcon').textContent = '🏃';
+      document.getElementById('mSpatialTitle').textContent = r.name;
+      document.getElementById('mSpatialBadge').textContent = r.badge;
+      document.getElementById('mSpatialRoute').innerHTML = `🏃 <b>核心原则</b>：${r.slogan}`;
+
+      // Update Spatial Brief Card content with mobile runner navigator
+      document.getElementById('mSpatialDesc').innerHTML = `
+        <!-- SubRoute Toggle Pills -->
+        <div class="flex items-center gap-1.5 p-1 bg-[var(--secondary)] rounded-xl mb-2">
+          <button onclick="selectMobileRunSubRoute('routeA')" class="flex-1 py-1.5 px-2 rounded-lg text-xs font-semibold transition ${routeKey === 'routeA' ? 'bg-emerald-600 text-white shadow-xs font-bold' : 'text-[var(--muted-foreground)]'}">
+            🟢 路线A: 八大关木栈道 (5.2km)
+          </button>
+          <button onclick="selectMobileRunSubRoute('routeB')" class="flex-1 py-1.5 px-2 rounded-lg text-xs font-semibold transition ${routeKey === 'routeB' ? 'bg-sky-600 text-white shadow-xs font-bold' : 'text-[var(--muted-foreground)]'}">
+            🔵 路线B: 威斯汀-情人坝 (5.5km)
+          </button>
+        </div>
+
+        <!-- 30-Second Mental Slogan -->
+        <div class="p-2.5 rounded-xl border ${routeKey === 'routeA' ? 'bg-emerald-500/10 border-emerald-500/30' : 'bg-sky-500/10 border-sky-500/30'} space-y-1">
+          <div class="text-[11px] font-bold ${routeKey === 'routeA' ? 'text-emerald-700 dark:text-emerald-300' : 'text-sky-700 dark:text-sky-300'} flex items-center gap-1">
+            <span>🧠</span> 30秒无脑记忆口诀（出门前默念，跑步不看手机）
+          </div>
+          <div class="text-xs font-bold ${routeKey === 'routeA' ? 'text-emerald-900 dark:text-emerald-100' : 'text-sky-900 dark:text-sky-100'} leading-relaxed">
+            ${r.slogan}
+          </div>
+        </div>
+
+        <!-- 4-Step Visual Batons -->
+        <div class="pt-2 space-y-1.5">
+          <div class="text-[11px] font-bold text-[var(--foreground)] flex items-center justify-between">
+            <span class="flex items-center gap-1"><span>👀</span> 4 步视觉接力棒（只认大地标，不背路名）</span>
+            <span class="text-[10px] text-sky-600 font-bold">自导向</span>
+          </div>
+          <div class="space-y-1.5">
+            ${r.batons.map(b => `
+              <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-2 text-xs space-y-0.5">
+                <div class="flex items-center justify-between">
+                  <span class="font-bold text-xs text-[var(--foreground)] flex items-center gap-1">
+                    <span class="w-4 h-4 rounded-full ${routeKey === 'routeA' ? 'bg-emerald-600' : 'bg-sky-600'} text-white flex items-center justify-center text-[10px] font-black shrink-0">${b.step}</span>
+                    <span>${b.title}</span>
+                  </span>
+                  <span class="text-[9.5px] px-1.5 py-0.5 rounded bg-[var(--secondary)] text-[var(--muted-foreground)] font-mono">${b.distance}</span>
+                </div>
+                <div class="text-[11px] text-[var(--foreground)] leading-snug">
+                  <b>👁️ 抬头见</b>：${b.visual}
+                </div>
+                <div class="text-[10px] text-[var(--muted-foreground)]">
+                  👟 <b>脚感与声音</b>：${b.sensory}
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <!-- Surface & Sensory Transition -->
+        <div class="pt-2 space-y-1">
+          <div class="text-[11px] font-bold text-[var(--foreground)] flex items-center gap-1">
+            <span>👣</span> 双脚与耳朵导航仪（材质切换感知赛段）
+          </div>
+          <div class="grid grid-cols-2 gap-1.5 text-[10px]">
+            ${r.surfaces.map(s => `
+              <div class="bg-[var(--secondary)]/60 rounded-lg p-1.5 border border-[var(--border)] space-y-0.5">
+                <div class="font-bold text-[var(--foreground)]">${s.range} · ${s.type}</div>
+                <div class="text-[var(--muted-foreground)] leading-tight">${s.feel}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <!-- Anti-Mistake Rules -->
+        <div class="pt-2 space-y-1">
+          <div class="text-[11px] font-bold text-rose-600 dark:text-rose-400 flex items-center gap-1">
+            <span>🚫</span> 新手跑青岛 · 3 大防错令 (绝对不踩坑)
+          </div>
+          <div class="space-y-1">
+            ${r.mistakes.map(m => `
+              <div class="bg-rose-500/10 border border-rose-500/20 text-rose-700 dark:text-rose-300 rounded-lg p-1.5 text-[10px] leading-snug">
+                ${m}
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <!-- Supplies -->
+        <div class="pt-1.5 text-[10.5px] text-[var(--muted-foreground)] bg-sky-500/5 p-2 rounded-lg border border-sky-500/20">
+          ${r.supply}
+        </div>
+      `;
+
+      // Auto scroll map
+      const scroller = document.getElementById('mapScrollContainer');
+      if (scroller) {
+        if (routeKey === 'routeA') {
+          scroller.scrollTo({ left: 280, behavior: 'smooth' });
+        } else {
+          scroller.scrollTo({ left: 470, behavior: 'smooth' });
+        }
+      }
+
+      renderSvgPins('run');
+    }
+
     // Spatial Brief Configurations for Map
     const mapSpatialConfig = {
       all: {
@@ -1046,6 +1291,11 @@
         }
       });
 
+      if (filter === 'run') {
+        selectMobileRunSubRoute(currentMobileRunSubRoute);
+        return;
+      }
+
       // Update Spatial Brief Card
       const cfg = mapSpatialConfig[filter] || mapSpatialConfig.all;
       document.getElementById('mSpatialIcon').textContent = cfg.icon;
@@ -1065,7 +1315,7 @@
             scroller.scrollTo({ left: 30, behavior: 'smooth' });
           } else if (filter === 'day2') {
             scroller.scrollTo({ left: 90, behavior: 'smooth' });
-          } else if (filter === 'day3' || filter === 'run') {
+          } else if (filter === 'day3') {
             scroller.scrollTo({ left: 280, behavior: 'smooth' });
           } else if (filter === 'day4') {
             scroller.scrollTo({ left: 470, behavior: 'smooth' });
@@ -1098,6 +1348,18 @@
         if (filter === 'run' || filter === 'day3') {
           runGroup.setAttribute('opacity', '1');
           runGroup.style.display = 'block';
+
+          const groupA = document.getElementById('runSubRouteA');
+          const groupB = document.getElementById('runSubRouteB');
+          if (groupA && groupB) {
+            if (currentMobileRunSubRoute === 'routeA') {
+              groupA.setAttribute('opacity', '1');
+              groupB.setAttribute('opacity', '0.15');
+            } else {
+              groupB.setAttribute('opacity', '1');
+              groupA.setAttribute('opacity', '0.15');
+            }
+          }
         } else {
           runGroup.setAttribute('opacity', '0.15');
           runGroup.style.display = 'block';
@@ -1150,10 +1412,16 @@
           isVisible = true;
           isCurrentDay = true;
         } else if (filter === 'run') {
-          isVisible = (spot.id === 'badaguan' || spot.id === 'taipingjiao');
-          isCurrentDay = isVisible;
-          if (spot.id === 'badaguan') seqBadge = '起';
-          if (spot.id === 'taipingjiao') seqBadge = '终';
+          if (currentMobileRunSubRoute === 'routeA') {
+            isVisible = (spot.id === 'badaguan' || spot.id === 'taipingjiao');
+            isCurrentDay = isVisible;
+            if (spot.id === 'badaguan') seqBadge = '起';
+            if (spot.id === 'taipingjiao') seqBadge = '环';
+          } else {
+            isVisible = (spot.id === 'mayfourth');
+            isCurrentDay = isVisible;
+            if (spot.id === 'mayfourth') seqBadge = '火';
+          }
         } else {
           isCurrentDay = (spot.days && spot.days.includes(filter));
           isVisible = isCurrentDay;
