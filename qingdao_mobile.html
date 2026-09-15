@@ -46,7 +46,7 @@
           <p class="text-[10px] text-[var(--muted-foreground)]">9.27 - 10.1 (5天4晚) · 拒绝特种兵</p>
         </div>
       </div>
-      <button onclick="switchView('map')" class="text-xs bg-sky-500/10 text-sky-600 border border-sky-500/20 px-2.5 py-1 rounded-full flex items-center gap-1 font-medium">
+      <button onclick="viewDayOnMap(currentMobileDay)" class="text-xs bg-sky-500/10 text-sky-600 border border-sky-500/20 px-2.5 py-1 rounded-full flex items-center gap-1 font-medium">
         <span>🗺️</span> 地图透视
       </button>
     </div>
@@ -93,6 +93,16 @@
         </p>
       </div>
 
+      <!-- Direct Map Route Button in Itinerary Tab -->
+      <button onclick="viewDayOnMap(currentMobileDay)" class="w-full bg-gradient-to-r from-sky-500/10 via-indigo-500/10 to-sky-500/5 hover:from-sky-500/20 hover:to-indigo-500/20 text-sky-700 dark:text-sky-300 border border-sky-500/30 rounded-xl py-2 px-3 flex items-center justify-between text-xs font-semibold shadow-2xs transition active:scale-[0.99]">
+        <span class="flex items-center gap-1.5">
+          <span>🗺️</span> 切换到地图透视查看今日路线与空间位置
+        </span>
+        <span class="text-[10px] bg-sky-500/20 text-sky-700 dark:text-sky-300 px-2 py-0.5 rounded-full font-bold">
+          查看地图透视 ➔
+        </span>
+      </button>
+
       <!-- Timeline Schedule Items -->
       <div class="space-y-2.5" id="mTimelineList">
         <!-- Injected via JS -->
@@ -118,46 +128,257 @@
       </div>
     </div>
 
-    <!-- VIEW 2: Visual Map Tab -->
+    <!-- VIEW 2: Visual Map Tab (地图透视与每日空间感知) -->
     <div id="view-map" class="tab-view hidden space-y-3">
-      <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-3 shadow-sm space-y-2">
-        <div class="flex items-center justify-between text-xs">
-          <span class="font-bold text-[var(--foreground)] flex items-center gap-1">
-            <span>🗺️</span> 前海一线空间地貌全景
+      
+      <!-- Day Filter Pills on Map (Horizontal Scroll) -->
+      <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-0.5">
+        <button onclick="setMapFilter('all')" data-mfilter="all" class="map-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-sky-600 text-white shadow-xs transition">
+          🗺️ 全部全景
+        </button>
+        <button onclick="setMapFilter('day1')" data-mfilter="day1" class="map-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-[var(--card)] border border-[var(--border)] text-[var(--muted-foreground)] transition">
+          Day 1 老城里院
+        </button>
+        <button onclick="setMapFilter('day2')" data-mfilter="day2" class="map-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-[var(--card)] border border-[var(--border)] text-[var(--muted-foreground)] transition">
+          Day 2 人文总督楼
+        </button>
+        <button onclick="setMapFilter('day3')" data-mfilter="day3" class="map-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-[var(--card)] border border-[var(--border)] text-[var(--muted-foreground)] transition">
+          Day 3 晨跑八大关
+        </button>
+        <button onclick="setMapFilter('day4')" data-mfilter="day4" class="map-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-[var(--card)] border border-[var(--border)] text-[var(--muted-foreground)] transition">
+          Day 4 啤酒与小麦岛
+        </button>
+        <button onclick="setMapFilter('day5')" data-mfilter="day5" class="map-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-[var(--card)] border border-[var(--border)] text-[var(--muted-foreground)] transition">
+          Day 5 栈桥避峰
+        </button>
+        <button onclick="setMapFilter('run')" data-mfilter="run" class="map-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-emerald-500/10 text-emerald-600 border border-emerald-500/30 transition">
+          🏃 晨跑轨迹
+        </button>
+      </div>
+
+      <!-- Spatial Brief Card (Changes dynamically per Day) -->
+      <div id="mSpatialBriefCard" class="bg-gradient-to-br from-sky-500/10 via-indigo-500/5 to-transparent border border-sky-500/25 rounded-2xl p-3 shadow-xs space-y-2">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-1.5">
+            <span id="mSpatialIcon" class="text-base">🧭</span>
+            <h3 id="mSpatialTitle" class="font-bold text-xs text-[var(--foreground)]">全景视角 · 山海城韵 15公里带</h3>
+          </div>
+          <span id="mSpatialBadge" class="text-[10px] bg-sky-500/20 text-sky-700 dark:text-sky-300 font-semibold px-2 py-0.5 rounded-full">
+            西起老城 ➔ 东至麦岛
           </span>
-          <span class="text-[10px] text-[var(--muted-foreground)]">西(老城) ➔ 东(小麦岛)</span>
+        </div>
+        <div class="text-[11px] text-[var(--muted-foreground)] leading-relaxed space-y-1" id="mSpatialDesc">
+          <div>📍 <b>空间分布</b>：青岛沿海旅游带长约15公里。西(老城) ➔ 中(八大关) ➔ 东(浮山湾/小麦岛)。</div>
+          <div>🚇 <b>交通骨架</b>：地铁3号线全线串联老城至五四广场；2号线直达小麦岛与啤酒博物馆。</div>
+        </div>
+        <div id="mSpatialRoute" class="text-[11px] font-medium text-sky-600 dark:text-sky-400 bg-sky-500/10 px-2.5 py-1.5 rounded-lg flex items-center gap-1 overflow-x-auto whitespace-nowrap">
+          <span>💡 提示：点击上方 Day 1-5 或 🏃晨跑，地图将自动镜头推进并高亮当日路线！</span>
+        </div>
+      </div>
+
+      <!-- Touch Map Container with Smooth Auto-Scroll & ViewBox -->
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-2.5 shadow-sm space-y-1.5">
+        <div class="flex items-center justify-between text-[11px] px-1 text-[var(--muted-foreground)]">
+          <span class="flex items-center gap-1 font-medium text-[var(--foreground)]">
+            <span>🗺️</span> 青岛前海空间地貌透视图
+          </span>
+          <span class="text-[10px] text-sky-600 flex items-center gap-1 font-semibold">
+            <span>👆 点击任意点位看游玩详情</span>
+          </span>
         </div>
 
-        <!-- Touch Map Container with Horizontal Scroll & ViewBox -->
-        <div class="overflow-x-auto rounded-xl border border-[var(--border)] bg-sky-950/20">
-          <svg viewBox="0 0 1060 520" class="w-[800px] h-[390px] select-none" xmlns="http://www.w3.org/2000/svg">
+        <!-- The Map Container with ID for auto-scrolling -->
+        <div id="mapScrollContainer" class="overflow-x-auto rounded-xl border border-[var(--border)] bg-sky-950/20 scroll-smooth">
+          <svg id="mQingdaoSvg" viewBox="0 0 1060 520" class="w-[880px] h-[430px] select-none" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <linearGradient id="seaG" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#0284c7" stop-opacity="0.15"/>
-                <stop offset="100%" stop-color="#0369a1" stop-opacity="0.38"/>
+              <!-- Sea Gradient -->
+              <linearGradient id="seaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#0284c7" stop-opacity="0.12"/>
+                <stop offset="100%" stop-color="#0369a1" stop-opacity="0.36"/>
               </linearGradient>
-              <linearGradient id="landG" x1="0%" y1="100%" x2="0%" y2="0%">
-                <stop offset="0%" stop-color="#f8fafc" stop-opacity="0.08"/>
+
+              <!-- Land Gradient -->
+              <linearGradient id="landGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" stop-color="#f8fafc" stop-opacity="0.07"/>
                 <stop offset="100%" stop-color="#f1f5f9" stop-opacity="0.18"/>
               </linearGradient>
             </defs>
-            <rect width="1060" height="520" fill="url(#seaG)" />
-            
-            <!-- Coastline -->
-            <path d="M 0,0 L 1060,0 L 1060,330 C 1020,330 990,340 960,345 C 930,350 910,345 880,360 C 860,370 850,395 860,420 C 870,440 900,435 905,405 C 910,380 870,360 850,355 C 800,345 760,340 710,345 C 660,350 630,360 590,360 C 570,360 560,390 575,415 C 590,430 610,410 600,385 C 595,370 565,365 540,355 C 510,350 490,385 500,410 C 510,425 530,415 520,395 C 515,380 470,360 440,360 C 400,360 380,395 365,410 C 350,420 330,410 335,380 C 340,360 320,355 295,360 C 275,365 250,400 265,435 C 275,450 295,445 290,415 C 285,395 240,365 210,360 C 185,355 175,410 175,430 C 175,445 160,445 160,425 L 160,350 C 130,345 90,355 60,390 C 40,415 10,440 0,450 Z" fill="url(#landG)" stroke="#38bdf8" stroke-width="2" opacity="0.8" />
 
-            <!-- Metro line 3 -->
-            <path d="M 140,290 Q 230,280 320,285 T 460,295 T 600,290 T 710,285" fill="none" stroke="#ef4444" stroke-width="3" stroke-dasharray="4 2" />
-            <text x="680" y="278" font-size="10" fill="#ef4444" font-weight="700">地铁3号线 (东西动脉)</text>
+            <!-- Ocean Base -->
+            <rect width="1060" height="520" fill="url(#seaGrad)" />
 
-            <!-- Morning run trail -->
-            <path d="M 430,355 C 450,335 470,325 485,325 L 505,335 L 505,385 C 515,398 535,395 550,380 C 565,370 575,400 580,410 C 590,415 605,395 615,365" fill="none" stroke="#10b981" stroke-width="5" stroke-linecap="round" stroke-dasharray="6 3" />
+            <!-- Ocean Wave Ripples in Bays -->
+            <g stroke="#38bdf8" stroke-opacity="0.22" stroke-width="1.2" fill="none">
+              <!-- Qingdao Bay ripples -->
+              <path d="M 120,410 Q 150,420 180,410" />
+              <path d="M 140,430 Q 170,440 200,430" />
+              <!-- Huiquan Bay ripples -->
+              <path d="M 390,400 Q 420,415 450,400" />
+              <path d="M 405,420 Q 435,435 465,420" />
+              <!-- Taiping Bay ripples -->
+              <path d="M 520,430 Q 550,442 580,430" />
+              <!-- Fushan Bay ripples -->
+              <path d="M 680,390 Q 730,405 780,390" />
+              <path d="M 700,415 Q 750,430 800,415" />
+            </g>
 
-            <!-- Landmark Pins on Map -->
+            <!-- Grid Lines for Spatial Distance Perception -->
+            <g opacity="0.06" stroke="currentColor" stroke-dasharray="3 3">
+              <line x1="180" y1="0" x2="180" y2="520" />
+              <line x1="480" y1="0" x2="480" y2="520" />
+              <line x1="720" y1="0" x2="720" y2="520" />
+              <line x1="900" y1="0" x2="900" y2="520" />
+            </g>
+
+            <!-- District Zone Watermarks in Background -->
+            <g font-size="11" font-weight="700" opacity="0.38" fill="currentColor">
+              <text x="180" y="105" text-anchor="middle">市南区 · 西部老城历史区</text>
+              <text x="370" y="65" text-anchor="middle">市北区 · 啤酒工业与里院</text>
+              <text x="520" y="105" text-anchor="middle">市南区 · 中部八大关海滨</text>
+              <text x="730" y="105" text-anchor="middle">市南区 · 东部新海湾(五四广场)</text>
+              <text x="940" y="105" text-anchor="middle">崂山区 · 小麦岛自然岸线</text>
+            </g>
+
+            <!-- Land Mass (Accurate coastal contours of Qingdao South Shore) -->
+            <path d="M 0,0 
+                     L 1060,0 
+                     L 1060,330 
+                     C 1020,330 990,340 960,345
+                     C 930,350 910,345 880,360
+                     C 860,370 850,395 860,420
+                     C 870,440 900,435 905,405
+                     C 910,380 870,360 850,355
+                     C 800,345 760,340 710,345
+                     C 660,350 630,360 590,360
+                     C 570,360 560,390 575,415
+                     C 590,430 610,410 600,385
+                     C 595,370 565,365 540,355
+                     C 510,350 490,385 500,410
+                     C 510,425 530,415 520,395
+                     C 515,380 470,360 440,360
+                     C 400,360 380,395 365,410
+                     C 350,420 330,410 335,380
+                     C 340,360 320,355 295,360
+                     C 275,365 250,400 265,435
+                     C 275,450 295,445 290,415
+                     C 285,395 240,365 210,360
+                     C 185,355 175,410 175,430
+                     C 175,445 160,445 160,425
+                     L 160,350
+                     C 130,345 90,355 60,390
+                     C 40,415 10,440 0,450
+                     Z" 
+                  fill="url(#landGrad)" 
+                  stroke="#38bdf8" 
+                  stroke-width="1.8" 
+                  stroke-opacity="0.45" />
+
+            <!-- Golden Sandy Beach Arcs -->
+            <!-- First Bathing Beach -->
+            <path d="M 400,362 Q 425,375 448,362" stroke="#f59e0b" stroke-width="4.5" stroke-linecap="round" opacity="0.8" />
+            <text x="425" y="388" font-size="9" fill="#d97706" font-weight="600" text-anchor="middle">第一海水浴场</text>
+
+            <!-- Second Bathing Beach -->
+            <path d="M 495,390 Q 512,410 525,395" stroke="#f59e0b" stroke-width="4.5" stroke-linecap="round" opacity="0.8" />
+            <text x="510" y="425" font-size="9" fill="#d97706" font-weight="600" text-anchor="middle">第二海水浴场</text>
+
+            <!-- Third Bathing Beach -->
+            <path d="M 610,358 Q 630,370 655,358" stroke="#f59e0b" stroke-width="4.5" stroke-linecap="round" opacity="0.8" />
+            <text x="635" y="380" font-size="9" fill="#d97706" font-weight="600" text-anchor="middle">第三海水浴场</text>
+
+            <!-- Zhanqiao Pier & Huilan Pavilion -->
+            <line x1="168" y1="350" x2="168" y2="435" stroke="#94a3b8" stroke-width="4.5" stroke-linecap="round"/>
+            <circle cx="168" cy="435" r="6" fill="#e11d48" stroke="#ffffff" stroke-width="1.5" />
+            <text x="168" y="452" font-size="8.5" fill="#e11d48" font-weight="700" text-anchor="middle">回澜阁</text>
+
+            <!-- Little Qingdao & White Lighthouse -->
+            <path d="M 225,365 Q 248,398 270,418" stroke="#94a3b8" stroke-width="2.5" stroke-dasharray="3 1.5" />
+            <path d="M 270,410 C 258,418 262,434 278,430 C 290,426 286,412 270,410 Z" fill="#64748b" opacity="0.8" />
+            <circle cx="275" cy="420" r="4.5" fill="#ffffff" stroke="#0284c7" stroke-width="2" />
+            <text x="275" y="442" font-size="8.5" fill="#0284c7" font-weight="700" text-anchor="middle">小青岛(白灯塔)</text>
+
+            <!-- Wheat Island (Offshore green lawn island) -->
+            <line x1="845" y1="355" x2="865" y2="385" stroke="#d97706" stroke-width="2.5" stroke-dasharray="3 1.5" />
+            <path d="M 860,400 C 850,385 870,360 895,370 C 915,380 910,420 890,425 C 870,430 855,415 860,400 Z" fill="#10b981" fill-opacity="0.3" stroke="#10b981" stroke-width="1.8" />
+            <text x="895" y="440" font-size="9" fill="#059669" font-weight="700" text-anchor="middle">小麦岛(海上草坪)</text>
+
+            <!-- Metro Transit Network (Line 3 & Line 2) -->
+            <!-- Metro Line 3 (East-West Red line) -->
+            <g opacity="0.65">
+              <path d="M 140,290 Q 230,280 320,285 T 460,295 T 600,290 T 710,285" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="5 2.5" />
+              <text x="590" y="280" font-size="8.5" fill="#ef4444" font-weight="700">地铁3号线 (东西大动脉)</text>
+              <circle cx="150" cy="290" r="2.5" fill="#ef4444" />
+              <circle cx="230" cy="282" r="2.5" fill="#ef4444" />
+              <circle cx="460" cy="295" r="2.5" fill="#ef4444" />
+              <circle cx="570" cy="290" r="2.5" fill="#ef4444" />
+              <circle cx="705" cy="285" r="3.5" fill="#ef4444" stroke="#fff" stroke-width="1" />
+            </g>
+
+            <!-- Metro Line 2 (Amber North-East line) -->
+            <g opacity="0.65">
+              <path d="M 370,140 Q 540,165 705,285 Q 790,310 880,340" fill="none" stroke="#f59e0b" stroke-width="2.2" stroke-dasharray="4 2" />
+              <text x="770" y="295" font-size="8.5" fill="#d97706" font-weight="700">地铁2号线</text>
+              <circle cx="880" cy="340" r="2.5" fill="#f59e0b" />
+            </g>
+
+            <!-- Dynamic Daily Route Path Connector -->
+            <g id="dayRouteGroup"></g>
+
+            <!-- Morning Run Track Layer (5.5km) -->
+            <g id="morningRunGroup" class="transition-all duration-300" opacity="0.85">
+              <path id="morningRunTrack" d="M 430,355 
+                         C 450,335 470,325 485,325
+                         L 505,335
+                         L 505,385
+                         C 515,398 535,395 550,380
+                         C 565,370 575,400 580,410
+                         C 590,415 605,395 615,365" 
+                    fill="none" 
+                    stroke="#10b981" 
+                    stroke-width="4.5" 
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-dasharray="6 3" />
+              
+              <!-- Start / End flags -->
+              <g transform="translate(425, 345)">
+                <circle cx="0" cy="0" r="4.5" fill="#10b981" />
+                <text x="-6" y="-7" font-size="8.5" font-weight="700" fill="#10b981">起:正阳关路</text>
+              </g>
+              <g transform="translate(615, 360)">
+                <circle cx="0" cy="0" r="4.5" fill="#059669" />
+                <text x="6" y="-3" font-size="8.5" font-weight="700" fill="#059669">终:太平角(5.5km)</text>
+              </g>
+            </g>
+
+            <!-- Distance Perception Ruler Axis -->
+            <g transform="translate(0, 480)" font-size="8.5" fill="currentColor">
+              <line x1="168" y1="0" x2="880" y2="0" stroke="currentColor" stroke-opacity="0.3" stroke-width="1.5" />
+              <line x1="168" y1="-4" x2="168" y2="4" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5" />
+              <line x1="490" y1="-4" x2="490" y2="4" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5" />
+              <line x1="705" y1="-4" x2="705" y2="4" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5" />
+              <line x1="880" y1="-4" x2="880" y2="4" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5" />
+
+              <rect x="290" y="-10" width="75" height="15" rx="3" fill="var(--card)" stroke="var(--border)" />
+              <text x="327" y="1" text-anchor="middle" font-weight="600" fill="#0284c7">4.5km·10分</text>
+
+              <rect x="560" y="-10" width="75" height="15" rx="3" fill="var(--card)" stroke="var(--border)" />
+              <text x="597" y="1" text-anchor="middle" font-weight="600" fill="#0284c7">3.5km·8分</text>
+
+              <rect x="760" y="-10" width="75" height="15" rx="3" fill="var(--card)" stroke="var(--border)" />
+              <text x="797" y="1" text-anchor="middle" font-weight="600" fill="#0284c7">5.2km·12分</text>
+            </g>
+
+            <!-- Landmark Pins Layer (Injected dynamically) -->
             <g id="mSvgPins"></g>
           </svg>
         </div>
-        <p class="text-[10px] text-[var(--muted-foreground)] text-center">👈 左右滑动可查看从老城区到小麦岛的全长15公里地形 👉</p>
+        <p class="text-[10px] text-[var(--muted-foreground)] text-center">👈 左右轻滑可查看全景 · 切换上方天数可自动聚焦居中 👉</p>
+      </div>
+
+      <!-- Spot Details Card (Appears when tapping any pin) -->
+      <div id="mSpotDetailCard" class="hidden bg-[var(--card)] border border-sky-500/30 rounded-2xl p-3.5 shadow-md space-y-2.5 transition-all">
+        <!-- Injected via JS -->
       </div>
 
       <!-- Mini Distance Calculator -->
@@ -407,6 +628,318 @@
       wheat: { zhanqiao: { d: 13.0, t: "28分 (¥35)", m: "地铁2转3号线" }, badaguan: { d: 8.7, t: "18分 (¥22)", m: "地铁2号线 18分" }, may4th: { d: 5.2, t: "12分 (¥15)", m: "地铁2号线 10分" }, shibei: { d: 11.5, t: "25分 (¥30)", m: "地铁2号线 25分" } }
     };
 
+    // Global State for Mobile App
+    let currentMobileDay = 'day1';
+    let currentMapFilter = 'all';
+    let selectedMobileLandmarkId = null;
+
+    // Detailed Mobile Landmarks Dataset with Coordinates & Daily Sequence
+    const mobileLandmarks = [
+      {
+        id: "zhanqiao",
+        name: "栈桥与回澜阁",
+        x: 168,
+        y: 430,
+        seq: { day1: "①", day5: "①" },
+        days: ["day1", "day5"],
+        category: "sea",
+        badge: "百年地标 · 晨光海鸥",
+        hours: "全天开放 (回澜阁 08:30-17:00)",
+        duration: "45 分钟",
+        bestTime: "清晨 07:00-08:30 (避开大巴团)",
+        ticket: "免费开放 (无需预约)",
+        location: "市南区太平路12号 (青岛站步行5分)",
+        tips: "青岛百年象征。国庆白天人多，务必清晨早来漫步，朝阳洒在胶州湾海面上，偶有早秋海鸥飞过，回望老城海岸线极其壮阔。"
+      },
+      {
+        id: "zhongshan",
+        name: "中山路老街",
+        x: 185,
+        y: 330,
+        seq: { day1: "②" },
+        days: ["day1"],
+        category: "arch",
+        badge: "百年老街 · 复古建筑",
+        hours: "全天开放 (沿街商铺 10:00-22:00)",
+        duration: "1 小时",
+        bestTime: "傍晚 16:30 - 17:30 (斜阳漫步)",
+        ticket: "免费漫步",
+        location: "市南区中山路主轴",
+        tips: "连接栈桥与大鲍岛的核心老街，途径安娜别墅巨型玫瑰、1907光影俱乐部与百年老字号春和楼。"
+      },
+      {
+        id: "church",
+        name: "圣弥厄尔大教堂",
+        x: 200,
+        y: 260,
+        seq: { day1: "③" },
+        days: ["day1"],
+        category: "arch",
+        badge: "哥特双塔 · 浪漫广场",
+        hours: "09:00 - 17:00 (周日11:30开放)",
+        duration: "40 分钟",
+        bestTime: "15:30 - 17:00 (夕阳照在塔尖)",
+        ticket: "广场免费; 进堂参观 ¥10",
+        location: "市南区浙江路15号",
+        tips: "双塔高56米，广场石板路铺就，很多拍婚纱照的新人与白鸽群，周边老洋房咖啡馆林立。"
+      },
+      {
+        id: "dabaodao",
+        name: "大鲍岛广兴里",
+        x: 235,
+        y: 195,
+        seq: { day1: "④" },
+        days: ["day1"],
+        category: "culture",
+        badge: "本土里院 · 天井精酿",
+        hours: "全天开放 (街区商铺至 22:00)",
+        duration: "1.5 ~ 2 小时",
+        bestTime: "傍晚 17:30 - 20:30 (里院夜景)",
+        ticket: "免费开放",
+        location: "海泊路·广兴里",
+        tips: "青岛本土最具特色的中西合璧天井里院。入夜后灯火斑斓，在天井四合院下喝冷链原浆鲜啤，配辣炒蛤蜊与烤海鲜，烟火气十足。"
+      },
+      {
+        id: "governor",
+        name: "总督楼旧址(迎宾馆)",
+        x: 285,
+        y: 250,
+        seq: { day2: "①" },
+        days: ["day2"],
+        category: "arch",
+        badge: "新罗马古堡 · 远东最奢华",
+        hours: "09:00 - 17:00 (周一闭馆)",
+        duration: "1.5 小时 (深度参观)",
+        bestTime: "上午 09:30 - 11:00",
+        ticket: "旺季 ¥20 / 淡季 ¥13",
+        location: "市南区龙山路26号",
+        tips: "粗粝黄色花岗岩古堡，内部完整保留百年前德式实木护墙板、水晶吊灯与施坦威钢琴。馆内严禁拍照，建议静心欣赏工艺。"
+      },
+      {
+        id: "daxuelu",
+        name: "大学路/老舍故居",
+        x: 325,
+        y: 270,
+        seq: { day2: "②" },
+        days: ["day2"],
+        category: "culture",
+        badge: "文人文脉 · 绿荫老院",
+        hours: "街区全天 (老舍故居 09:00-17:00)",
+        duration: "1.5 ~ 2 小时",
+        bestTime: "午后 14:00 - 16:30 (秋阳斑驳)",
+        ticket: "街区免费; 故居免费",
+        location: "大学路/黄县路名人故居群",
+        tips: "推荐走入黄县路幽静院落，找一家百年法桐掩映的独立咖啡馆(如自力咖啡)，在自然天光下静心翻书放空1~2小时。"
+      },
+      {
+        id: "xinhaoshan",
+        name: "信号山公园 (观景楼)",
+        x: 265,
+        y: 285,
+        seq: { day2: "③" },
+        days: ["day2"],
+        category: "view",
+        badge: "老城制高点 · 绝美夕阳",
+        hours: "公园 06:00-20:30 (楼至 17:00)",
+        duration: "1.5 小时",
+        bestTime: "16:45 - 18:15 (落日染红红瓦)",
+        ticket: "公园免费; 旋转观景楼 ¥10",
+        location: "市南区齐东路17号",
+        tips: "15分钟漫步登顶。踏浪亭360度俯瞰全城：大教堂、迎宾馆、小青岛尽收眼底，夕阳金光染红满城红瓦绿树碧海蓝天。"
+      },
+      {
+        id: "badaguan",
+        name: "八大关风景区",
+        x: 485,
+        y: 335,
+        seq: { day3: "①", run: "起点" },
+        days: ["day3", "run"],
+        category: "arch",
+        badge: "万国建筑博览 · 水杉林荫",
+        hours: "街区全天 (花石楼 08:30-17:00)",
+        duration: "2.5 小时",
+        bestTime: "清晨晨跑 或 14:30-16:30",
+        ticket: "街区免费; 花石楼 ¥8.5",
+        location: "市南区正阳关路/居庸关路",
+        tips: "青岛慢游的灵魂所在！十条马路以关隘命名。清晨独享水杉大道；下午登花石楼顶俯瞰第二海水浴场月牙湾。"
+      },
+      {
+        id: "taipingjiao",
+        name: "太平角公园与海岬",
+        x: 570,
+        y: 390,
+        seq: { day3: "②", run: "终点" },
+        days: ["day3", "run"],
+        category: "sea",
+        badge: "静谧海岬 · 礁石看海咖啡",
+        hours: "全天开放",
+        duration: "1.5 ~ 2 小时",
+        bestTime: "15:00 - 18:00 (海风下午茶)",
+        ticket: "免费开放",
+        location: "市南区太平角一路至三路",
+        tips: "比八大关更静谧。独栋老洋房海边咖啡馆(如遇遇见海)，270°全景海景大窗直面黄海，听浪看书天花板。"
+      },
+      {
+        id: "beermuseum",
+        name: "青岛啤酒博物馆",
+        x: 370,
+        y: 130,
+        seq: { day4: "①" },
+        days: ["day4"],
+        category: "culture",
+        badge: "百年工业遗产 · 1903原浆",
+        hours: "08:30 - 17:30 (停检前半小时)",
+        duration: "2 小时",
+        bestTime: "上午 10:00 - 12:00",
+        ticket: "普通票约 ¥60 (含2杯鲜啤+豆)",
+        location: "市北区登州路56号",
+        tips: "国家一级博物馆，完整保留1903年德式糖化车间与铜锅发酵罐。参观中途免费畅饮未过滤的鲜原浆生啤，麦香极其醇厚。"
+      },
+      {
+        id: "wheat",
+        name: "小麦岛公园",
+        x: 875,
+        y: 405,
+        seq: { day4: "②" },
+        days: ["day4"],
+        category: "view",
+        badge: "海上孤独绿岛 · 草坪落日",
+        hours: "06:00 - 21:00",
+        duration: "2 小时",
+        bestTime: "16:30 - 18:30 (日落吉他音乐)",
+        ticket: "免费开放",
+        location: "崂山区麦岛路西50米",
+        tips: "被海水360度环绕的小岛，走过木栈桥登岛。大片向海倾斜的绿色草坡，傍晚有青年歌手弹吉他，看金色夕阳落入海面，松弛浪漫。"
+      },
+      {
+        id: "mayfourth",
+        name: "五四广场 & 奥帆中心",
+        x: 705,
+        y: 335,
+        seq: { day4: "③" },
+        days: ["day4"],
+        category: "sea",
+        badge: "五月的风 · 浮山湾现代夜景",
+        hours: "全天开放 (灯光秀20:00)",
+        duration: "1 小时",
+        bestTime: "傍晚至夜间 19:30 - 20:30",
+        ticket: "免费开放",
+        location: "市南区东海西路",
+        tips: "青岛现代天际线窗口。红色五月的风雕塑与千帆泊岸的情人坝，夜晚可欣赏浮山湾现代高楼滨海灯光秀。"
+      },
+      {
+        id: "qinyulu",
+        name: "琴屿路 & 小青岛",
+        x: 270,
+        y: 420,
+        seq: { day5: "②" },
+        days: ["day5"],
+        category: "sea",
+        badge: "最美海滨S弯 · 白色灯塔",
+        hours: "全天 (小青岛公园 08:30-17:00)",
+        duration: "1 小时",
+        bestTime: "清晨 09:00 - 10:15",
+        ticket: "免费漫步",
+        location: "市南区琴屿路1号",
+        tips: "沿海蚀红礁石S弯漫步，一边是浪花拍岸，一边是安静咖啡馆。远眺小青岛上的百年白色德式灯塔，海风吹拂极其治愈。"
+      },
+      {
+        id: "westin",
+        name: "青岛威斯汀酒店",
+        x: 705,
+        y: 285,
+        days: ["all"],
+        category: "hotel",
+        badge: "五星商务度假 · 双地铁中枢",
+        hours: "24小时接待服务",
+        duration: "大本营住宿",
+        bestTime: "全天舒适入住",
+        ticket: "住宿 (平日约¥750-850/晚)",
+        location: "市南区香港中路8号 (五四广场站直达)",
+        tips: "楼下双地铁2/3号线交汇，去老城、去小麦岛均直达免换乘；对面是万象城，单日晨跑打车7分钟(¥10)直达八大关。"
+      }
+    ];
+
+    // Spatial Brief Configurations for Map
+    const mapSpatialConfig = {
+      all: {
+        icon: "🗺️",
+        title: "青岛前海 15公里山海慢调全景",
+        badge: "全景视角 · 西城东海",
+        desc: `
+          <div>📍 <b>空间分布</b>：青岛沿海旅游带由西向东依海岸线展开，西起历史老城，中接八大关海湾，东达现代浮山湾与小麦岛。</div>
+          <div>🚇 <b>交通中枢</b>：地铁3号线串联老城至五四广场；2号线通达市北与麦岛；清晨打车空畅约10~20元。</div>
+        `,
+        route: "💡 提示：点击上方 Day 1-5 或 🏃晨跑，地图将自动镜头推进并高亮当日路线！"
+      },
+      day1: {
+        icon: "🏮",
+        title: "Day 1 空间焦点 · 西部百年老城商业与里院",
+        badge: "核心圈仅 1.2 km · 纯步行漫步",
+        desc: `
+          <div>📍 <b>片区特征</b>：青岛发祥之地，自胶州湾向内陆延伸，缓坡欧式街道交错。</div>
+          <div>🚶 <b>通勤感知</b>：各景点紧密相连（栈桥 ➔ 中山路 ➔ 大教堂 ➔ 大鲍岛），步行5-12分钟即达，无需叫车。</div>
+          <div>💡 <b>慢行建议</b>：下午顺坡闲逛中山路老洋房，傍晚步入广兴里天井，精酿鲜啤与小吃烟火气十足。</div>
+        `,
+        route: "🚩 路线轨迹：① 栈桥 ➔ ② 中山路百年老街 ➔ ③ 圣弥厄尔大教堂 ➔ ④ 大鲍岛广兴里"
+      },
+      day2: {
+        icon: "🏛️",
+        title: "Day 2 空间焦点 · 信号山文化腹地与文人旧居",
+        badge: "紧凑核心圈 800m · 绿荫依山",
+        desc: `
+          <div>📍 <b>片区特征</b>：总督楼迎宾馆与信号山紧邻，大学路、鱼山路、黄县路环绕其周，红瓦绿树最浓郁处。</div>
+          <div>🚶 <b>通勤感知</b>：迎宾馆至老舍故居步行6分钟；故居至信号山入口步行8分钟。</div>
+          <div>💡 <b>慢行建议</b>：午后在深巷绿荫咖啡馆看书放空，16:45前登上信号山踏浪亭，迎金色夕阳染红满城红瓦。</div>
+        `,
+        route: "🚩 路线轨迹：① 德国总督楼旧址(迎宾馆) ➔ ② 大学路/老舍故居 ➔ ③ 信号山公园落日"
+      },
+      day3: {
+        icon: "🏃",
+        title: "Day 3 空间焦点 · 中部八大关林荫与太平角海岬",
+        badge: "晨跑 5.5km + 下午海滨漫步",
+        desc: `
+          <div>📍 <b>片区特征</b>：青岛最静谧优美的海岬地貌。水杉大道、第二海水浴场、花石楼与太平角礁石自然相连。</div>
+          <div>🚕 <b>通勤感知</b>：住威斯汀清晨叫车7分钟(¥10)直达正阳关路；地铁3号线太平角公园站直达。</div>
+          <div>💡 <b>慢行建议</b>：清晨独享无车水杉路与海浪；下午在礁石洋房咖啡馆（遇遇见海）靠窗听浪读一本好书。</div>
+        `,
+        route: "🚩 路线轨迹：① 正阳关路起跑 ➔ ② 第二海水浴场 ➔ ③ 花石楼/公主楼 ➔ ④ 太平角海景咖啡"
+      },
+      day4: {
+        icon: "🍺",
+        title: "Day 4 空间焦点 · 市北工业遗产 ➔ 麦岛草坪 ➔ 现代浮山湾",
+        badge: "约 13 km · 地铁2号线直达",
+        desc: `
+          <div>📍 <b>片区特征</b>：由北向东跨越历史与现代。市北登州路百年厂房 ➔ 东部海上独立绿岛 ➔ 现代摩天海湾。</div>
+          <div>🚇 <b>通勤感知</b>：啤酒博物馆乘地铁2号线直达麦岛站(20分)；麦岛回五四广场/威斯汀仅4站(10分)。</div>
+          <div>💡 <b>慢行建议</b>：上午在1903车间品尝鲜原浆；下午坐上小麦岛草坡听吉他看日落；夜晚散步奥帆看灯光秀。</div>
+        `,
+        route: "🚩 路线轨迹：① 青岛啤酒博物馆 ➔ ② 小麦岛海上大草坪 ➔ ③ 五四广场/奥帆中心"
+      },
+      day5: {
+        icon: "🌊",
+        title: "Day 5 空间焦点 · 栈桥避峰 ➔ 琴屿路S弯 ➔ 从容返程",
+        badge: "海滨 1.5 km · 晨光避开大客流",
+        desc: `
+          <div>📍 <b>片区特征</b>：青岛湾畔海蚀礁石与蜿蜒公路，小青岛白色灯塔隔海相望。</div>
+          <div>🚇 <b>通勤感知</b>：地铁3号线青岛站直达栈桥；游览完毕回威斯汀退房或直接在青岛站乘车。</div>
+          <div>💡 <b>慢行建议</b>：10月1日国庆首日游客较多，清晨07:30前漫步栈桥与琴屿路，独享辽阔无人的晨光海景。</div>
+        `,
+        route: "🚩 路线轨迹：① 栈桥与回澜阁 ➔ ② 琴屿路S弯 & 小青岛 ➔ 悠闲退房返程"
+      },
+      run: {
+        icon: "👟",
+        title: "专享晨跑轨迹 · 八大关海滨林荫 5.5 km",
+        badge: "80% 柏油林荫 + 20% 平整实木栈道",
+        desc: `
+          <div>🏃 <b>起跑点</b>：汇泉广场/正阳关路水杉林荫道（清晨06:15出发）。</div>
+          <div>🌊 <b>中途折返</b>：折入第二海水浴场海滨木栈道，听潮声看朝阳。</div>
+          <div>🏁 <b>终点收步</b>：太平角公园木栈道海边草坪，面海拉伸，公厕与自动售水机完备。</div>
+        `,
+        route: "🏃 晨跑路线：正阳关路(起) ➔ 居庸关路 ➔ 二浴海滨栈道 ➔ 太平角公园(终)"
+      }
+    };
+
     // Switch Bottom Views
     function switchView(tab) {
       document.querySelectorAll('.tab-view').forEach(el => el.classList.add('hidden'));
@@ -420,10 +953,23 @@
       document.getElementById('nav-' + tab).classList.remove('text-[var(--muted-foreground)]');
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      if (tab === 'map') {
+        setTimeout(() => {
+          setMapFilter(currentMapFilter || currentMobileDay, true);
+        }, 100);
+      }
+    }
+
+    // Direct transition from itinerary to map perspective
+    function viewDayOnMap(dayKey) {
+      switchView('map');
+      setMapFilter(dayKey, true);
     }
 
     // Set Active Day in Itinerary Tab
     function setMobileDay(dayKey) {
+      currentMobileDay = dayKey;
       const data = mobileData[dayKey];
       if (!data) return;
 
@@ -487,6 +1033,275 @@
       }
     }
 
+    // Set Map Filter & Auto-Scroll Viewport
+    function setMapFilter(filter, autoScroll = true) {
+      currentMapFilter = filter;
+
+      // Update pills style
+      document.querySelectorAll('.map-filter-btn').forEach(btn => {
+        if (btn.getAttribute('data-mfilter') === filter) {
+          btn.className = "map-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-sky-600 text-white shadow-xs transition";
+        } else {
+          btn.className = "map-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-[var(--card)] border border-[var(--border)] text-[var(--muted-foreground)] transition";
+        }
+      });
+
+      // Update Spatial Brief Card
+      const cfg = mapSpatialConfig[filter] || mapSpatialConfig.all;
+      document.getElementById('mSpatialIcon').textContent = cfg.icon;
+      document.getElementById('mSpatialTitle').textContent = cfg.title;
+      document.getElementById('mSpatialBadge').textContent = cfg.badge;
+      document.getElementById('mSpatialDesc').innerHTML = cfg.desc;
+      document.getElementById('mSpatialRoute').innerHTML = cfg.route;
+
+      // Render Pins & Routes
+      renderSvgPins(filter);
+
+      // Auto scroll horizontal map container to center relevant zone
+      if (autoScroll) {
+        const scroller = document.getElementById('mapScrollContainer');
+        if (scroller) {
+          if (filter === 'day1') {
+            scroller.scrollTo({ left: 30, behavior: 'smooth' });
+          } else if (filter === 'day2') {
+            scroller.scrollTo({ left: 90, behavior: 'smooth' });
+          } else if (filter === 'day3' || filter === 'run') {
+            scroller.scrollTo({ left: 280, behavior: 'smooth' });
+          } else if (filter === 'day4') {
+            scroller.scrollTo({ left: 470, behavior: 'smooth' });
+          } else if (filter === 'day5') {
+            scroller.scrollTo({ left: 50, behavior: 'smooth' });
+          } else {
+            scroller.scrollTo({ left: 160, behavior: 'smooth' });
+          }
+        }
+      }
+
+      // Hide or reset spot detail card unless tapped
+      if (!selectedMobileLandmarkId) {
+        const card = document.getElementById('mSpotDetailCard');
+        if (card) card.classList.add('hidden');
+      }
+    }
+
+    // Render SVG Map Pins & Dynamic Trajectory Routes
+    function renderSvgPins(filter = 'all') {
+      const g = document.getElementById('mSvgPins');
+      if (!g) return;
+      g.innerHTML = '';
+
+      const routeGroup = document.getElementById('dayRouteGroup');
+      if (routeGroup) routeGroup.innerHTML = '';
+
+      const runGroup = document.getElementById('morningRunGroup');
+      if (runGroup) {
+        if (filter === 'run' || filter === 'day3') {
+          runGroup.setAttribute('opacity', '1');
+          runGroup.style.display = 'block';
+        } else {
+          runGroup.setAttribute('opacity', '0.15');
+          runGroup.style.display = 'block';
+        }
+      }
+
+      // Draw day route path connector if specific day
+      if (routeGroup) {
+        let routePathD = '';
+        let strokeColor = '#38bdf8';
+
+        if (filter === 'day1') {
+          routePathD = 'M 168,430 L 185,330 L 200,260 L 235,195';
+          strokeColor = '#0284c7';
+        } else if (filter === 'day2') {
+          routePathD = 'M 285,250 L 325,270 L 265,285';
+          strokeColor = '#8b5cf6';
+        } else if (filter === 'day3') {
+          routePathD = 'M 485,335 L 510,395 L 570,390';
+          strokeColor = '#10b981';
+        } else if (filter === 'day4') {
+          routePathD = 'M 370,130 Q 540,200 705,285 L 875,405 L 705,335';
+          strokeColor = '#f59e0b';
+        } else if (filter === 'day5') {
+          routePathD = 'M 168,430 Q 210,445 270,420';
+          strokeColor = '#0284c7';
+        }
+
+        if (routePathD) {
+          const pathEl = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+          pathEl.setAttribute('d', routePathD);
+          pathEl.setAttribute('fill', 'none');
+          pathEl.setAttribute('stroke', strokeColor);
+          pathEl.setAttribute('stroke-width', '3.5');
+          pathEl.setAttribute('stroke-linecap', 'round');
+          pathEl.setAttribute('stroke-linejoin', 'round');
+          pathEl.setAttribute('stroke-dasharray', '6 3');
+          pathEl.setAttribute('class', 'filter drop-shadow-md');
+          routeGroup.appendChild(pathEl);
+        }
+      }
+
+      // Render Pins
+      mobileLandmarks.forEach(spot => {
+        let isVisible = true;
+        let isCurrentDay = false;
+        let seqBadge = '';
+
+        if (filter === 'all') {
+          isVisible = true;
+          isCurrentDay = true;
+        } else if (filter === 'run') {
+          isVisible = (spot.id === 'badaguan' || spot.id === 'taipingjiao');
+          isCurrentDay = isVisible;
+          if (spot.id === 'badaguan') seqBadge = '起';
+          if (spot.id === 'taipingjiao') seqBadge = '终';
+        } else {
+          isCurrentDay = (spot.days && spot.days.includes(filter));
+          isVisible = isCurrentDay;
+          if (spot.seq && spot.seq[filter]) {
+            seqBadge = spot.seq[filter];
+          }
+        }
+
+        const isSelected = (spot.id === selectedMobileLandmarkId);
+
+        // Pin Colors by category
+        let pinColor = '#ef4444'; // arch
+        if (spot.category === 'sea') pinColor = '#0284c7';
+        if (spot.category === 'culture') pinColor = '#f59e0b';
+        if (spot.category === 'view') pinColor = '#10b981';
+        if (spot.category === 'hotel') pinColor = '#8b5cf6';
+
+        const pinGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        const opacityClass = isCurrentDay ? 'opacity-100 cursor-pointer' : 'opacity-20 pointer-events-none';
+        pinGroup.setAttribute('class', `transition-all duration-300 ${opacityClass}`);
+        pinGroup.setAttribute('onclick', `selectMobileLandmark('${spot.id}')`);
+
+        // Pulsing ring if active or selected
+        if (isSelected || (isCurrentDay && filter !== 'all')) {
+          const ring = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+          ring.setAttribute('cx', spot.x);
+          ring.setAttribute('cy', spot.y);
+          ring.setAttribute('r', isSelected ? '14' : '11');
+          ring.setAttribute('fill', 'none');
+          ring.setAttribute('stroke', pinColor);
+          ring.setAttribute('stroke-width', '1.8');
+          ring.setAttribute('class', 'pulse-ring');
+          pinGroup.appendChild(ring);
+        }
+
+        // Pin circle
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('cx', spot.x);
+        circle.setAttribute('cy', spot.y);
+        circle.setAttribute('r', isSelected ? '8' : (isCurrentDay ? '6.5' : '5'));
+        circle.setAttribute('fill', pinColor);
+        circle.setAttribute('stroke', '#ffffff');
+        circle.setAttribute('stroke-width', '2');
+        circle.setAttribute('filter', 'drop-shadow(0 2px 4px rgba(0,0,0,0.35))');
+        pinGroup.appendChild(circle);
+
+        // Sequence Number Badge (if active day has sequence)
+        if (seqBadge && isCurrentDay) {
+          const badgeText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          badgeText.setAttribute('x', spot.x);
+          badgeText.setAttribute('y', spot.y + 3.5);
+          badgeText.setAttribute('text-anchor', 'middle');
+          badgeText.setAttribute('font-size', '8');
+          badgeText.setAttribute('font-weight', '900');
+          badgeText.setAttribute('fill', '#ffffff');
+          badgeText.textContent = seqBadge;
+          pinGroup.appendChild(badgeText);
+        }
+
+        // Label Text
+        const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        label.setAttribute('x', spot.x);
+        label.setAttribute('y', spot.y - 9);
+        label.setAttribute('text-anchor', 'middle');
+        label.setAttribute('font-size', isSelected ? '11' : (isCurrentDay ? '9.5' : '8.5'));
+        label.setAttribute('font-weight', isCurrentDay ? '700' : '500');
+        label.setAttribute('fill', isSelected ? '#38bdf8' : (isCurrentDay ? 'currentColor' : '#94a3b8'));
+        label.setAttribute('class', 'select-none pointer-events-none drop-shadow-xs');
+        label.textContent = spot.name.split(' ')[0];
+        pinGroup.appendChild(label);
+
+        g.appendChild(pinGroup);
+      });
+    }
+
+    // Select Landmark Pin on Map & Open Details Card
+    function selectMobileLandmark(id) {
+      selectedMobileLandmarkId = id;
+      renderSvgPins(currentMapFilter);
+
+      const spot = mobileLandmarks.find(s => s.id === id);
+      const card = document.getElementById('mSpotDetailCard');
+      if (!spot || !card) return;
+
+      card.classList.remove('hidden');
+      card.innerHTML = `
+        <div class="flex items-start justify-between">
+          <div>
+            <div class="flex items-center gap-1.5 flex-wrap">
+              <span class="font-bold text-sm text-[var(--foreground)]">${spot.name}</span>
+              <span class="text-[10px] bg-sky-500/15 text-sky-700 dark:text-sky-300 font-semibold px-2 py-0.5 rounded-full">${spot.badge}</span>
+            </div>
+            <div class="text-[11px] text-[var(--muted-foreground)] mt-0.5">${spot.location || ''}</div>
+          </div>
+          <button onclick="closeSpotDetail()" class="text-[var(--muted-foreground)] hover:text-[var(--foreground)] p-1 text-sm font-bold">✕</button>
+        </div>
+        <div class="grid grid-cols-2 gap-1 text-[11px] text-[var(--muted-foreground)] bg-[var(--background)] p-2 rounded-xl border border-[var(--border)]">
+          <div>🕒 <b>开放</b>: ${spot.hours}</div>
+          <div>⏳ <b>游玩</b>: ${spot.duration}</div>
+          <div class="col-span-2">🌅 <b>最佳时间</b>: <span class="text-amber-600 font-medium">${spot.bestTime}</span></div>
+          <div class="col-span-2">🎫 <b>门票</b>: ${spot.ticket}</div>
+        </div>
+        <div class="text-[11px] text-sky-700 dark:text-sky-300 bg-sky-500/5 p-2 rounded-xl border border-sky-500/15 leading-snug">
+          💡 <b>慢游建议</b>：${spot.tips}
+        </div>
+        <div class="flex items-center justify-between pt-1">
+          <button onclick="setCalcEndpoint('${spot.id}', 'start')" class="text-[10px] bg-sky-500/10 text-sky-600 px-2 py-1 rounded-lg border border-sky-500/20 font-medium">
+            📍 设为通勤测算起点
+          </button>
+          <button onclick="setCalcEndpoint('${spot.id}', 'end')" class="text-[10px] bg-emerald-500/10 text-emerald-600 px-2 py-1 rounded-lg border border-emerald-500/20 font-medium">
+            🏁 设为终点
+          </button>
+        </div>
+      `;
+
+      card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function closeSpotDetail() {
+      selectedMobileLandmarkId = null;
+      const card = document.getElementById('mSpotDetailCard');
+      if (card) card.classList.add('hidden');
+      renderSvgPins(currentMapFilter);
+    }
+
+    function setCalcEndpoint(spotId, role) {
+      let key = 'badaguan';
+      if (['zhanqiao', 'church', 'zhongshan', 'dabaodao', 'governor', 'xinhaoshan', 'daxuelu', 'qinyulu'].includes(spotId)) {
+        key = 'zhanqiao';
+      } else if (['badaguan', 'taipingjiao'].includes(spotId)) {
+        key = 'badaguan';
+      } else if (['mayfourth', 'westin'].includes(spotId)) {
+        key = 'may4th';
+      } else if (spotId === 'beermuseum') {
+        key = 'shibei';
+      } else if (spotId === 'wheat') {
+        key = 'wheat';
+      }
+
+      if (role === 'start') {
+        document.getElementById('mCalcStart').value = key;
+      } else {
+        document.getElementById('mCalcEnd').value = key;
+      }
+      mCalculateDist();
+      document.getElementById('mCalcStart').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
     // Render Spots Directory
     function renderSpotsDirectory() {
       const box = document.getElementById('mSpotsDirectory');
@@ -530,33 +1345,10 @@
       }
     }
 
-    // Render SVG Map Pins
-    function renderSvgPins() {
-      const g = document.getElementById('mSvgPins');
-      const pins = [
-        { name: "大教堂", x: 200, y: 260, c: "#ef4444" },
-        { name: "信号山", x: 265, y: 275, c: "#10b981" },
-        { name: "迎宾馆", x: 285, y: 250, c: "#ef4444" },
-        { name: "八大关", x: 485, y: 335, c: "#ef4444" },
-        { name: "太平角", x: 570, y: 390, c: "#0284c7" },
-        { name: "啤酒馆", x: 370, y: 130, c: "#f59e0b" },
-        { name: "小麦岛", x: 875, y: 405, c: "#10b981" },
-        { name: "五四广场", x: 705, y: 335, c: "#0284c7" }
-      ];
-      pins.forEach(p => {
-        const grp = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-        grp.innerHTML = `
-          <circle cx="${p.x}" cy="${p.y}" r="6" fill="${p.c}" stroke="#fff" stroke-width="2"/>
-          <text x="${p.x}" y="${p.y - 8}" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor">${p.name}</text>
-        `;
-        g.appendChild(grp);
-      });
-    }
-
-    // Init
+    // Initialize App
     setMobileDay('day1');
+    setMapFilter('all', false);
     renderSpotsDirectory();
-    renderSvgPins();
     mCalculateDist();
   </script>
 </body>
